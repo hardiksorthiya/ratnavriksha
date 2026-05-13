@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Philosopher:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root{
+    --primary-sorath-color: #007bff;
+    --secondary-sorath-color: #6c757d;
+    --hover-sorath-color: #0056b3;
+    --font-family-sorath: 'Poppins', sans-serif;
+    --font-family-philo-sorath: 'Philosopher', sans-serif;
+    --sorath-background-color: #030303;
+    --sorath-white-color: #fff;
+
+
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family-sorath);
+    background-color: var(--sorath-background-color);
+    color: var(--sorath-white-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+.hp-header-inner {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.hp-brand {
+    margin: 0 80px;
+    padding: 0;
+    line-height: 1;
+}
+
+.hp-menu-group {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.hp-menu-group .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    padding: 8px 0;
+    white-space: nowrap;
+}
+
+.hp-menu-group .nav-link:hover {
+    color: #fff;
+}
+
+.hp-contact-btn {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #fff;
+    border-radius: 999px;
+    padding: 9px 20px;
+    font-size: 14px;
+}
+
+.hp-contact-btn:hover {
+    color: #000;
+    background: #fff;
+}
+
+.hp-toggler {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hp-toggler .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+
+
+
+
+/* hero slider */
+
+.home-hero {
+    padding: 32px 0 40px;
+}
+
+.hero-slider {
+    position: relative;
+}
+
+.hero-slide {
+    position: relative;
+    min-height: 640px;
+}
+
+.hero-slide-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 18px;
+}
+
+.hero-title
+ {
+    color: var(--sorath-white-color);
+    font-family: var(--font-family-philo-sorath);
+}
+
+.hero-description {
+       max-width: 420px;
+    text-align: right;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 200;
+}
+
+.hero-slide-image-wrap {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.hero-slide-image {
+    width: 100%;
+    height: 430px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.hero-slider .hero-prev {
+    position: absolute;
+    left: 0;
+    bottom: 14px;
+    z-index: 5;
+}
+
+.hero-slider .hero-next {
+    position: absolute;
+    left: 54px;
+    bottom: 14px;
+    z-index: 5;
+}
+
+.hero-arrow {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--sorath-white-color);
+    font-size: 24px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.hero-arrow:hover {
+    border-color: var(--sorath-white-color);
+    background: var(--sorath-white-color);
+    color: var(--sorath-background-color);
+}
+
+    img.hero-slider-bg-one {
+        position: absolute;
+        width: 100px;
+        opacity: 0.3;
+        filter: grayscale(1);
+        transform: rotate(330deg);
+        top: 0%;
+        left: 7%;
+        animation: rotate 20s linear infinite;
+    }
+
+    img.hero-slider-bg-two {
+        position: absolute;
+        width: 120px;
+        opacity: 0.3;
+        filter: grayscale(1);
+        transform: rotate(30deg);
+        top: 20%;
+        left: 50%;
+        animation: updown 20s linear infinite;
+    }
+
+    img.hero-slider-bg-three {
+        position: absolute;
+        width: 100px;
+        opacity: 0.3;
+        filter: grayscale(1);
+        transform: rotate(15deg);
+        top: 60%;
+        left: 80%;
+        animation: rotate 10s linear infinite;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+
+        }
+        50% {
+            transform: rotate(40deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    @keyframes updown {
+        0% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-20px);
+        }
+        100% {
+            transform: translateY(0);
+        }
+    }
