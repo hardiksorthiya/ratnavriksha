@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/media_query.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/frontend/keyframe.css') }}">
 
     {{-- slider slick --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/slick.min.css') }}">

@@ -1,0 +1,29 @@
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+
+    }
+
+    50% {
+        transform: rotate(40deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
