@@ -1,7 +1,7 @@
 <section class="about-sorath py-5">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-5">
+            <div class="col-lg-5">
                 <div class="about-right-section position-relative">
                     <div class="about-description d-flex flex-column gap-3">
                         <p class="pt-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos. Lorem
@@ -16,12 +16,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-lg-4">
                 <div class="about-center-image position-relative d-flex pt-2">
                     <img src="{{ asset('images/home/ab1.png') }}" alt="About" class="img-fluid img-about-home">
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <div class="about-left-section position-relative">
                     <h2 class="about-title">About Ratnavriksha Gems</h2>
                     <a href="#" class="btn btn-primary-sorath mt-4">

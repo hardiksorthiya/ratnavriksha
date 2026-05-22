@@ -18,6 +18,8 @@
     {{-- slider slick --}}
     <link rel="stylesheet" href="{{ asset('css/frontend/slick.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/frontend/slick-theme.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+    @stack('styles')
 
 </head>
 <body>
@@ -25,9 +27,12 @@
 
     @yield('content')
 
+    @include('frontend.layout.footer')
+
     <script src="{{ asset('js/frontend/jquery.min.js') }}"></script>
     <script src="{{ asset('js/frontend/slick.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/frontend/script.js') }}"></script>
+    @stack('scripts')
 </body>
 </html>

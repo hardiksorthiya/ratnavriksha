@@ -1,0 +1,120 @@
+.auth-page {
+    min-height: 100vh;
+    background: url('../images/home/bgc1.png') center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(10, 10, 10, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 36px 32px;
+    color: #fff;
+}
+
+.auth-logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 20px;
+    border: 1px solid #c9a227;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-logo img {
+    width: 40px;
+}
+
+.auth-title {
+    font-family: 'Philosopher', Georgia, serif;
+    font-size: 1.75rem;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+}
+
+.auth-label {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.85rem;
+    margin-bottom: 6px;
+}
+
+.auth-input-group .form-control {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 8px;
+}
+
+.auth-input-group .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.auth-input-group .form-control:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #c9a227;
+    color: #fff;
+    box-shadow: none;
+}
+
+.auth-input-group .input-group-text,
+.auth-input-group .btn-toggle-pass {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.auth-link {
+    color: #c9a227;
+    text-decoration: none;
+    font-size: 0.85rem;
+}
+
+.auth-link:hover {
+    color: #e0c56a;
+}
+
+.auth-check label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+}
+
+.btn-auth {
+    background: linear-gradient(135deg, #e8d5a3, #c9a227, #9a7b1a);
+    border: none;
+    color: #1a1a1a;
+    font-weight: 600;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.btn-auth:hover {
+    color: #000;
+    opacity: 0.95;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 24px;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.9rem;
+}
+
+.auth-alert {
+    font-size: 0.85rem;
+}

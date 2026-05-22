@@ -2,7 +2,7 @@
 
 :root {
     --primary-sorath-color: #007bff;
-    --secondary-sorath-color: #6c757d;
+    --secondary-sorath-color: #2a2a2a;
     --hover-sorath-color: #0056b3;
     --font-family-sorath: 'Poppins', sans-serif;
     --font-family-philo-sorath: 'Philosopher', sans-serif;
@@ -19,10 +19,23 @@ body {
     background-color: var(--sorath-background-color);
     color: var(--sorath-white-color);
 }
+img {
+    width: 100%;
+    
+}
 
 a {
     text-decoration: none;
     color: inherit;
+}
+
+svg {
+    width: 24px;
+    fill: white;
+}
+
+.font-pilo{
+    font-family: var(--font-family-philo-sorath);
 }
 
 .btn-primary-sorath {
@@ -82,6 +95,7 @@ a {
     margin: 0 80px;
     padding: 0;
     line-height: 1;
+        width: 80px;
 }
 
 .hp-menu-group {
@@ -469,3 +483,260 @@ h2.about-title
 
 
 
+/* vision-mission */
+
+.vision-image-3 {
+    width: 160px;
+    position: absolute;
+    animation: rotate-2 20s linear infinite;
+}
+
+.vision-item h2 {
+    font-family: var(--font-family-philo-sorath);
+    font-size: 3rem;
+}
+
+.line-vision {
+    content: "";
+    width: 270px;
+    height: 2px;
+    background: linear-gradient(45deg, var(--sorath-white-color), transparent);
+        margin: 30px 0;
+}
+section.vision-section {
+    background: var(--secondary-sorath-color);
+}
+
+/* services */
+
+.services-subtitle {
+    max-width: 680px;
+    padding: 0 12px;
+}
+
+.service-card {
+    --pentagon-side: 90px;
+    --pentagon-top: 36px;
+    --pentagon-bottom: 126px;
+    width: calc(var(--pentagon-side) * 2);
+    height: calc(var(--pentagon-top) + var(--pentagon-bottom));
+    flex-shrink: 0;
+}
+
+.pentagonal-shape {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: var(--pentagon-side) solid transparent;
+    border-right: var(--pentagon-side) solid transparent;
+    border-bottom: var(--pentagon-top) solid #2a2a2a;
+    z-index: 0;
+}
+
+.pentagonal-shape::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--pentagon-side) * -1);
+    top: var(--pentagon-top);
+    width: 0;
+    height: 0;
+    border-left: var(--pentagon-side) solid transparent;
+    border-right: var(--pentagon-side) solid transparent;
+    border-top: var(--pentagon-bottom) solid #2a2a2a;
+}
+
+.service-card-content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    padding: 42px 24px 28px;
+    gap: 10px;
+}
+
+.service-card-title {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.35;
+    color: var(--sorath-white-color);
+}
+
+.service-card-content svg {
+    width: 24px;
+    height: auto;
+    fill: var(--sorath-white-color);
+}
+h2.service-title.font-pilo {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+}
+
+/* contact */
+
+.contact-section {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.contact-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contact-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.contact-content {
+    position: relative;
+    z-index: 1;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.contact-title {
+    margin: 0;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    color: var(--sorath-white-color);
+    font-weight: 700;
+}
+
+.contact-desc {
+    margin: 0 0 8px;
+    max-width: 520px;
+    color: var(--sorath-white-color);
+    font-size: 15px;
+    font-weight: 300;
+}
+
+
+/* footer */
+
+.footer-logo img {
+    width: 84px;
+}
+
+.footer-description {
+    margin-top: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+    max-width: 320px;
+}
+img.img-fluid.footer-small-image {
+    width: 150px;
+}
+.footer-touch {
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 150px;
+    color: var(--sorath-white-color);
+    text-decoration: none;
+}
+
+.footer-touch-ring {
+    width: 100%;
+    height: 100%;
+    display: block;
+    animation: rotate-2 14s linear infinite;
+}
+
+.footer-touch-center {
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    z-index: 2;
+    width: 40px;
+    height: 40px;
+    background: var(--sorath-white-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.2s ease;
+}
+
+.footer-touch::after {
+    content: "";
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.footer-touch:hover .footer-touch-center {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.footer-brand {
+    margin: 24px 0 0;
+    padding: 0;
+    line-height: 0.85;
+    text-align: center;
+    color: #2a2a2a;
+    font-family: var(--font-family-philo-sorath);
+    font-size: clamp(2.5rem, 11vw, 8rem);
+}
+
+.footer-bottom {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.footer-copyright {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-social-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.footer-social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+    color: var(--sorath-white-color);
+    font-size: 17px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.footer-social-links a:hover {
+    background: var(--sorath-white-color);
+    border-color: var(--sorath-white-color);
+    color: var(--sorath-background-color);
+    transform: translateY(-2px);
+}
+
+.footer-social-links i {
+    line-height: 1;
+}

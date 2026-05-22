@@ -9,9 +9,31 @@
     .hero-title {
         font-size: 92px;
     }
+
+    .footer-brand {
+        font-size: 12rem;
+    }
 }
 
 @media (max-width: 991.98px) {
+    .footer-brand {
+        font-size: clamp(3.5rem, 14vw, 8rem);
+    }
+
+    .service-card {
+        --pentagon-side: 72px;
+        --pentagon-top: 30px;
+        --pentagon-bottom: 100px;
+    }
+
+    .service-card-content {
+        padding: 34px 18px 24px;
+    }
+
+    .service-card-title {
+        font-size: 15px;
+    }
+
     .category-title-right {
         padding-left: 0;
         text-align: left;
@@ -122,7 +144,45 @@
     }
 }
 
+@media (max-width: 767.98px) {
+    .footer-copyright {
+        text-align: center;
+    }
+
+    .footer-social-links {
+        justify-content: center;
+        margin-top: 4px;
+    }
+}
+
 @media (max-width: 575.98px) {
+    .footer-brand {
+        font-size: clamp(2rem, 12vw, 4rem);
+    }
+
+    .service-item {
+        --bs-gutter-y: 1.25rem;
+    }
+
+    .service-card {
+        --pentagon-side: 58px;
+        --pentagon-top: 24px;
+        --pentagon-bottom: 82px;
+    }
+
+    .service-card-content {
+        padding: 28px 14px 20px;
+        gap: 6px;
+    }
+
+    .service-card-title {
+        font-size: 13px;
+    }
+
+    .service-card-content svg {
+        width: 18px;
+    }
+
     .hero-title {
         font-size: 34px;
     }

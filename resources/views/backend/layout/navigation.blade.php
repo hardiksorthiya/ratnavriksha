@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white border-bottom px-3">
+<nav class="navbar navbar-expand-lg topbar px-3">
             <button id="sidebarToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-label="Toggle sidebar">
                 <i class="bi bi-list fs-5"></i>
             </button>

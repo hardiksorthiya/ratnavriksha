@@ -1,0 +1,414 @@
+.product-page {
+    padding: 32px 0 80px;
+    min-height: 60vh;
+}
+
+.product-breadcrumb {
+    margin-bottom: 28px;
+}
+
+.product-breadcrumb .breadcrumb {
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.product-breadcrumb .breadcrumb-item,
+.product-breadcrumb .breadcrumb-item a {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 14px;
+}
+
+.product-breadcrumb .breadcrumb-item a:hover {
+    color: #fff;
+}
+
+.product-breadcrumb .breadcrumb-item.active {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.product-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255, 255, 255, 0.35);
+    content: "/";
+}
+
+.product-media {
+    position: sticky;
+    top: 100px;
+}
+
+.product-gallery-wrap {
+    position: relative;
+}
+
+.product-gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    padding: 0;
+    cursor: pointer;
+}
+
+.product-gallery-prev {
+    left: 14px;
+}
+
+.product-gallery-next {
+    right: 14px;
+}
+
+.product-main-view {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+.product-gallery-slider {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    cursor: grab;
+}
+
+.product-gallery-slider.is-grabbing {
+    cursor: grabbing;
+}
+
+.product-gallery-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+.product-gallery-track.is-dragging {
+    transition: none;
+}
+
+.product-gallery-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0a0a0a;
+}
+
+.product-main-media {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.product-main-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 14px;
+}
+
+.product-main-placeholder i {
+    font-size: 2.5rem;
+}
+
+.product-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.product-thumb {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    padding: 0;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    cursor: pointer;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.product-thumb:hover,
+.product-thumb.is-active {
+    border-color: #fff;
+}
+
+.product-thumb.is-active {
+    transform: scale(1.02);
+}
+
+.product-thumb img,
+.product-thumb video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+}
+
+.product-thumb-badge {
+    position: absolute;
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    font-size: 9px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.product-details {
+    padding-top: 8px;
+}
+
+.product-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin: 0 0 16px;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.product-short-desc {
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 24px;
+}
+
+.product-enquiry-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 28px;
+}
+
+.product-enquiry-btn {
+    font-size: 15px;
+    padding: 12px 24px;
+}
+
+.product-enquiry-alert {
+    border-radius: 10px;
+    margin-bottom: 20px;
+    background: rgba(25, 135, 84, 0.15);
+    border: 1px solid rgba(25, 135, 84, 0.4);
+    color: #9ae6b4;
+}
+
+.product-enquiry-modal .modal-content {
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    color: #fff;
+}
+
+.product-enquiry-modal .modal-header,
+.product-enquiry-modal .modal-footer {
+    border-color: rgba(255, 255, 255, 0.1);
+    padding: 18px 22px;
+}
+
+.product-enquiry-modal .modal-body {
+    padding: 22px;
+}
+
+.product-enquiry-modal .modal-title {
+    font-size: 1.35rem;
+    color: #fff;
+}
+
+.product-enquiry-modal .form-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.product-enquiry-modal .form-control {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.product-enquiry-modal .form-control:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.35);
+    color: #fff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+.product-enquiry-modal .form-control[readonly] {
+    opacity: 0.85;
+    cursor: default;
+}
+
+.product-enquiry-modal .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.product-enquiry-cancel {
+    padding: 10px 20px;
+    border-radius: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: transparent;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.product-enquiry-cancel:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.product-spec-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.product-spec-card-title {
+    margin: 0;
+    padding: 18px 22px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.04);
+    letter-spacing: 0.02em;
+}
+
+.product-spec-table {
+    --bs-table-bg: transparent;
+    --bs-table-color: rgba(255, 255, 255, 0.9);
+    --bs-table-border-color: rgba(255, 255, 255, 0.08);
+    margin: 0;
+}
+
+.product-spec-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.product-spec-table tbody tr:nth-child(odd) {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.product-spec-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.product-spec-table th,
+.product-spec-table td {
+    padding: 14px 22px;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-size: 14px;
+}
+
+.product-spec-table th {
+    width: 42%;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+}
+
+.product-spec-table td {
+    color: #fff;
+    font-weight: 500;
+}
+
+.product-spec-table tbody tr:last-child th,
+.product-spec-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.product-long-desc {
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.product-long-desc-title {
+    font-size: 1.75rem;
+    margin: 0 0 20px;
+    color: #fff;
+}
+
+.product-long-desc-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.72);
+    max-width: 900px;
+}
+
+@media (max-width: 991.98px) {
+    .product-media {
+        position: static;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+    .product-page {
+        padding: 24px 0 56px;
+    }
+
+    .product-gallery-prev {
+        left: 8px;
+    }
+
+    .product-gallery-next {
+        right: 8px;
+    }
+
+    .product-gallery-arrow {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    .product-enquiry-actions {
+        flex-direction: column;
+    }
+
+    .product-enquiry-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .product-spec-table th,
+    .product-spec-table td {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+
+    .product-spec-table th {
+        width: 46%;
+    }
+}

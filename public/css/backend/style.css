@@ -1,13 +1,22 @@
-
-
 :root {
     --sidebar-width: 260px;
     --sidebar-collapsed-width: 78px;
+    --bg: #0d0d0d;
+    --card: #141414;
+    --card-border: rgba(255, 255, 255, 0.08);
+    --gold: #c9a227;
+    --gold-light: #e0c56a;
+    --text: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.65);
 }
+
 body {
-    background-color: #f8f9fa;
+    background: var(--bg);
+    color: var(--text);
     margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
 }
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -17,8 +26,97 @@ body {
     overflow-y: auto;
     transition: width 0.2s ease, transform 0.2s ease;
     z-index: 1025;
-    background: #fff;
-    border-right: 1px solid #dee2e6;
+    background: var(--card);
+    border-right: 1px solid var(--card-border);
+}
+
+.sidebar .border-bottom {
+    border-color: var(--card-border) !important;
+}
+
+.sidebar .brand-text {
+    color: var(--text);
+    font-family: 'Philosopher', Georgia, serif;
+}
+
+.sidebar-brand-icon {
+    color: var(--gold);
+}
+
+.sidebar .nav-pills .nav-link {
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.sidebar .nav-pills .nav-link:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+}
+
+.sidebar .nav-pills .nav-link.active {
+    background: rgba(201, 162, 39, 0.15) !important;
+    color: var(--gold-light) !important;
+    border: 1px solid rgba(201, 162, 39, 0.35);
+}
+
+.sidebar .nav-link:focus,
+.sidebar-dropdown-toggle:focus {
+    box-shadow: none;
+    outline: none;
+}
+
+.sidebar .nav-link.active i {
+    color: var(--gold);
+}
+
+.sidebar-dropdown {
+    margin-top: 2px;
+}
+
+.sidebar-dropdown-toggle {
+    border: none;
+    background: transparent;
+    text-align: left;
+    color: var(--text-muted);
+}
+
+.sidebar-dropdown-toggle:hover,
+.sidebar-dropdown-toggle:focus {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+}
+
+.sidebar-dropdown-toggle.active {
+    background: rgba(201, 162, 39, 0.15);
+    color: var(--gold-light);
+}
+
+.sidebar-dropdown-toggle .submenu-chevron {
+    font-size: 0.75rem;
+    transition: transform 0.2s ease;
+}
+
+.sidebar-dropdown-toggle:not(.collapsed) .submenu-chevron {
+    transform: rotate(180deg);
+}
+
+.sidebar-dropdown .collapse {
+    padding-left: 8px;
+}
+
+.sidebar .submenu-link {
+    padding-left: 28px;
+    font-size: 0.92rem;
+}
+
+body.sidebar-collapsed .sidebar-dropdown .collapse {
+    display: none !important;
+}
+
+body.sidebar-collapsed .sidebar-dropdown-toggle .submenu-chevron {
+    display: none;
 }
 
 .main-wrapper {
@@ -48,6 +146,300 @@ body.sidebar-collapsed .sidebar .menu-text {
     display: inline-block;
 }
 
+.topbar {
+    background: var(--card);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.topbar .navbar-brand {
+    color: var(--text);
+    font-family: 'Philosopher', Georgia, serif;
+}
+
+.topbar .btn-outline-secondary {
+    border-color: var(--card-border);
+    color: var(--text-muted);
+}
+
+.topbar .btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+}
+
+.topbar .btn-light {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--card-border);
+    color: var(--text);
+}
+
+.topbar .dropdown-menu {
+    background: var(--card);
+    border-color: var(--card-border);
+}
+
+.topbar .dropdown-item {
+    color: var(--text-muted);
+}
+
+.topbar .dropdown-item:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+}
+
 .content-area {
-    min-height: 100vh;
+    min-height: calc(100vh - 56px);
+    padding: 24px !important;
+}
+
+.dash-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 28px;
+}
+
+.dash-title {
+    font-family: 'Philosopher', Georgia, serif;
+    font-size: 1.75rem;
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.dash-subtitle {
+    color: var(--text-muted);
+    margin: 0;
+}
+
+.panel-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+}
+
+.panel-card .card-body {
+    color: var(--text);
+}
+
+.panel-card .card-title {
+    font-family: 'Philosopher', Georgia, serif;
+    color: var(--text);
+}
+
+.btn-gold {
+    background: linear-gradient(135deg, #e8d5a3, #c9a227, #9a7b1a);
+    border: none;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.btn-gold:hover {
+    color: #000;
+    opacity: 0.95;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #e8d5a3, #c9a227, #9a7b1a);
+    border: none;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    color: #000;
+    opacity: 0.95;
+}
+
+.btn-warning {
+    background: rgba(201, 162, 39, 0.2);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+}
+
+.btn-danger {
+    background: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.5);
+    color: #f5a5ad;
+}
+
+.table {
+    --bs-table-bg: var(--card);
+    --bs-table-color: rgba(255, 255, 255, 0.88);
+    --bs-table-border-color: var(--card-border);
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.04);
+    --bs-table-striped-color: rgba(255, 255, 255, 0.88);
+    --bs-table-hover-bg: rgba(255, 255, 255, 0.07);
+    --bs-table-hover-color: var(--text);
+    --bs-table-active-bg: rgba(201, 162, 39, 0.12);
+    --bs-table-active-color: var(--text);
+    color: rgba(255, 255, 255, 0.88);
+    border-color: var(--card-border);
+    margin-bottom: 0;
+}
+
+.table > :not(caption) > * > * {
+    background-color: var(--card);
+    color: rgba(255, 255, 255, 0.88);
+    border-color: var(--card-border);
+    box-shadow: none;
+}
+
+.table thead th {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--gold-light);
+    font-weight: 600;
+}
+
+.table tbody td {
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.form-control,
+.form-select {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--card-border);
+    color: var(--text);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--gold);
+    color: var(--text);
+    box-shadow: none;
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+label {
+    color: var(--text-muted);
+}
+
+.alert-success {
+    background: rgba(25, 135, 84, 0.15);
+    border-color: rgba(25, 135, 84, 0.4);
+    color: #9fdfb5;
+}
+
+.alert-danger {
+    background: rgba(220, 53, 69, 0.15);
+    border-color: rgba(220, 53, 69, 0.4);
+    color: #f5a5ad;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+}
+
+.text-dark {
+    color: var(--text) !important;
+}
+
+.text-primary {
+    color: var(--gold) !important;
+}
+
+.profile-section-title {
+    font-family: 'Philosopher', Georgia, serif;
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.profile-section-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.panel-card-danger {
+    border-color: rgba(220, 53, 69, 0.35) !important;
+}
+
+.modal-content.panel-card {
+    background: var(--card);
+    color: var(--text);
+}
+
+.btn-outline-dark-auth {
+    border-color: var(--card-border);
+    color: var(--text-muted);
+}
+
+.btn-outline-dark-auth:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text);
+}
+
+.auth-link,
+.btn-link.auth-link {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.auth-link:hover,
+.btn-link.auth-link:hover {
+    color: var(--gold-light);
+}
+
+.text-muted-small {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.slider-thumb {
+    width: 72px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
+}
+
+.slider-preview img {
+    max-width: 100%;
+    width: 180px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+}
+
+.badge-active {
+    background: rgba(201, 162, 39, 0.2);
+    color: var(--gold-light);
+    border: 1px solid rgba(201, 162, 39, 0.4);
+}
+
+.badge-inactive {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-muted);
+    border: 1px solid var(--card-border);
+}
+
+.form-check-label {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.form-check-input {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: var(--card-border);
+}
+
+.form-check-input:checked {
+    background-color: var(--gold);
+    border-color: var(--gold);
+}
+
+.product-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 0.75rem;
+}
+
+.product-gallery-item img,
+.product-gallery-item video {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid var(--card-border);
 }
