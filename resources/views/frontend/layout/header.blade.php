@@ -7,8 +7,10 @@
 
                 <div class="collapse navbar-collapse justify-content-space-between" id="hpNavbar">
                     <ul class="navbar-nav hp-menu-group">
-                        <li class="nav-item"><a class="nav-link" href="#">Diamonds & Jewellery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Technology</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Diamonds</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Create Your Design</a></li>
+
                     </ul>
 
                     <a class="navbar-brand hp-brand" href="{{ route('home') }}">
@@ -16,9 +18,10 @@
                     </a>
 
                     <ul class="navbar-nav hp-menu-group">
-                        <li class="nav-item"><a class="nav-link" href="#">MPCVD Systems</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
-                        <li class="nav-item"><a href="#" class="btn hp-contact-btn">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">News & Events</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Blogs</a></li>
+                        <li class="nav-item"><a href="{{ route('contact') }}" class="btn hp-contact-btn">Contact Us</a></li>
                     </ul>
                 </div>
 

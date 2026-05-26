@@ -144,6 +144,34 @@
     }
 }
 
+@media (max-width: 991.98px) {
+    .about-who-image-wrap {
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    .about-who-label,
+    .about-who-title,
+    .about-who-divider,
+    .about-who-text {
+        max-width: 100%;
+    }
+
+    .breadcrumb-section {
+        min-height: 360px;
+        padding: 56px 0 48px;
+        background-position: 75% center;
+    }
+
+    .breadcrumb-section-overlay {
+        background: linear-gradient(
+            180deg,
+            rgba(8, 8, 8, 0.9) 0%,
+            rgba(8, 8, 8, 0.82) 100%
+        );
+    }
+}
+
 @media (max-width: 767.98px) {
     .footer-copyright {
         text-align: center;
@@ -156,6 +184,22 @@
 }
 
 @media (max-width: 575.98px) {
+    .breadcrumb-section {
+        min-height: 320px;
+        padding: 48px 0 40px;
+    }
+
+    .breadcrumb-label {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        margin-bottom: 14px;
+    }
+
+    .breadcrumb-divider {
+        max-width: 260px;
+        margin-bottom: 18px;
+    }
+
     .footer-brand {
         font-size: clamp(2rem, 12vw, 4rem);
     }

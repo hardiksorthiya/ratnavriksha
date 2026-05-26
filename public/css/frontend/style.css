@@ -8,8 +8,7 @@
     --font-family-philo-sorath: 'Philosopher', sans-serif;
     --sorath-background-color: #030303;
     --sorath-white-color: #fff;
-
-
+    --sorath-gold-accent: #c4a35a;
 }
 
 
@@ -621,6 +620,178 @@ h2.service-title.font-pilo {
     font-weight: 300;
 }
 
+
+/* about — who we are */
+
+.about-who {
+    background: var(--sorath-background-color);
+}
+
+.about-who-image-wrap {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.about-who-img {
+    border: 1px solid;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+
+.about-who-label {
+    display: block;
+    margin-bottom: 16px;
+    color: var(--sorath-gold-accent);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+
+.about-who-title {
+    margin: 0 0 20px;
+    color: var(--sorath-white-color);
+    font-size: clamp(1.85rem, 4vw, 2.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.about-who-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    max-width: 280px;
+}
+
+.about-who-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--sorath-gold-accent);
+}
+
+.about-who-divider-icon {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    color: var(--sorath-gold-accent);
+}
+
+.about-who-divider-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+}
+
+.about-who-text {
+    margin: 0 0 16px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 15px;
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 520px;
+}
+
+
+/* page breadcrumb / hero */
+
+.breadcrumb-section {
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    padding: 72px 0 64px;
+    background-color: #0a0a0a;
+    background-image: var(--breadcrumb-bg);
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.breadcrumb-section-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(8, 8, 8, 0.92) 0%,
+        rgba(8, 8, 8, 0.78) 42%,
+        rgba(8, 8, 8, 0.35) 68%,
+        rgba(8, 8, 8, 0.15) 100%
+    );
+    pointer-events: none;
+}
+
+.breadcrumb-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.breadcrumb-content {
+    max-width: 560px;
+}
+
+.breadcrumb-label {
+    display: block;
+    margin-bottom: 18px;
+    color: var(--sorath-gold-accent);
+    font-family: var(--font-family-sorath);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+
+.breadcrumb-heading {
+    margin: 0 0 22px;
+    color: var(--sorath-white-color);
+    font-size: clamp(2.25rem, 5vw, 3.75rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+}
+
+.breadcrumb-divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+    max-width: 320px;
+}
+
+.breadcrumb-divider-line {
+    flex: 1;
+    height: 1px;
+    background: var(--sorath-gold-accent);
+    opacity: 0.85;
+}
+
+.breadcrumb-divider-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: var(--sorath-gold-accent);
+}
+
+.breadcrumb-divider-icon svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+}
+
+.breadcrumb-desc {
+    margin: 0;
+    max-width: 520px;
+    color: rgba(255, 255, 255, 0.88);
+    font-family: var(--font-family-sorath);
+    font-size: clamp(0.95rem, 1.6vw, 1.05rem);
+    line-height: 1.75;
+    font-weight: 300;
+}
 
 /* footer */
 

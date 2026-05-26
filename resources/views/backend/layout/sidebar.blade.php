@@ -23,6 +23,11 @@
                 <span class="menu-text">Sliders</span>
             </a>
 
+            <a href="{{ route('pages.index') }}" class="nav-link d-flex align-items-center gap-2 {{ request()->routeIs('pages.*') ? 'active' : '' }}">
+                <i class="bi bi-file-earmark-text fs-5"></i>
+                <span class="menu-text">Static Pages</span>
+            </a>
+
             @php
                 $productMenuOpen = request()->routeIs('shapes.*') || request()->routeIs('colors.*') || request()->routeIs('clarities.*') || request()->routeIs('cuts.*') || request()->routeIs('products.*');
             @endphp
