@@ -13,8 +13,10 @@ return new class extends Migration
             $table->foreignId('product_id')->nullable()->constrained('products')->nullOnDelete();
             $table->string('product_name')->nullable();
             $table->string('name');
+            $table->string('email')->nullable();
+            $table->string('subject')->nullable();
             $table->string('quantity')->nullable();
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->text('comment')->nullable();
             $table->timestamps();
         });
