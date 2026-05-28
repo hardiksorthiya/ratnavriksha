@@ -32,5 +32,41 @@ class PageSeeder extends Seeder
                 'status' => 'active',
             ]
         );
+
+        Page::updateOrCreate(
+            ['slug' => 'diamonds'],
+            [
+                'name' => 'Diamonds',
+                'meta_title' => 'Diamonds | Ratnavriksha',
+                'label' => 'Diamonds',
+                'heading' => "Find Your\nPerfect Diamond",
+                'description' => 'Explore our curated range of natural diamonds across shapes, colors, cuts, and clarities.',
+                'status' => 'active',
+            ]
+        );
+
+        Page::updateOrCreate(
+            ['slug' => 'blogs'],
+            [
+                'name' => 'Blogs',
+                'meta_title' => 'Blogs | Ratnavriksha',
+                'label' => 'Blogs',
+                'heading' => "Insights\n& Stories",
+                'description' => 'Read expert articles, buying guides, and diamond knowledge from our team.',
+                'status' => 'active',
+            ]
+        );
+
+        Page::updateOrCreate(
+            ['slug' => 'news-events'],
+            [
+                'name' => 'News & Events',
+                'meta_title' => 'News & Events | Ratnavriksha',
+                'label' => 'News & Events',
+                'heading' => "Latest News\n& Events",
+                'description' => 'Stay updated with announcements, launches, and upcoming events from Ratnavriksha.',
+                'status' => 'active',
+            ]
+        );
     }
 }

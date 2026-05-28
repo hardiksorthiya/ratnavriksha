@@ -4,11 +4,7 @@
 
 @section('content')
     @include('frontend.component.page-breadcrumb')
-
-    {{-- Contact page body — add design here later --}}
-    <section class="contact-page py-5">
-        <div class="container">
-            {{-- Your contact form / map / details go here --}}
-        </div>
-    </section>
+    @include('frontend.component.contact.contact')
+    @include('frontend.component.contact.map')
+    @include('frontend.component.contact.faq')
 @endsection

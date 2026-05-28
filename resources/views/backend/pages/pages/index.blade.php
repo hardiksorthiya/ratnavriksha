@@ -43,7 +43,7 @@
                                 <td><code>/{{ $page->slug }}</code></td>
                                 <td>{{ $page->label ?? '—' }}</td>
                                 <td>
-                                    @if(view()->exists('frontend.pages.'.$page->slug))
+                                    @if(view()->exists('frontend.pages.'.$page->slug) || view()->exists('frontend.pages.'.$page->slug.'.index'))
                                         <span class="badge badge-active">OK</span>
                                     @else
                                         <span class="badge badge-inactive">Missing blade</span>

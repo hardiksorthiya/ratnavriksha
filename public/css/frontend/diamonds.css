@@ -1,0 +1,428 @@
+/* Diamonds listing page */
+
+.diamonds-listing {
+    padding-top: 34px;
+    padding-bottom: 70px;
+}
+
+.diamonds-toolbar {
+    margin-bottom: 18px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.diamonds-title {
+    margin: 0;
+    color: var(--sorath-white-color);
+    font-size: clamp(1.6rem, 3.8vw, 2.3rem);
+    font-weight: 700;
+}
+
+.diamonds-subtitle {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.diamonds-sidebar {
+    position: sticky;
+    top: calc(var(--hp-header-height) + 24px);
+}
+
+.diamonds-sidebar-card {
+    padding: 22px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+}
+
+.diamonds-sidebar-card--hint {
+    margin-top: 14px;
+    background: linear-gradient(145deg, rgba(149, 85, 73, 0.12) 0%, rgba(6, 6, 6, 0.95) 100%);
+}
+
+.diamonds-sidebar-title {
+    margin: 0 0 6px;
+    color: var(--primary-sorath-color);
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.diamonds-sidebar-subtitle {
+    margin: 0 0 14px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.5;
+}
+
+.diamonds-sidebar-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.diamonds-filter-group {
+    margin-top: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+.diamonds-filter-group:first-child {
+    margin-top: 0;
+}
+
+.diamonds-filter-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px 16px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.35s ease;
+}
+
+.diamonds-filter-toggle:hover {
+    background: rgba(149, 85, 73, 0.08);
+}
+
+.diamonds-filter-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(149, 85, 73, 0.45);
+    border-radius: 50%;
+    color: var(--primary-sorath-color);
+    font-size: 12px;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.diamonds-filter-toggle[aria-expanded="true"] .diamonds-filter-icon {
+    transform: rotate(45deg);
+    background: rgba(149, 85, 73, 0.2);
+    border-color: var(--primary-sorath-color);
+}
+
+.diamonds-filter-collapse {
+    padding: 0 12px 12px;
+}
+
+.diamonds-filter-group-title {
+    margin: 0;
+    color: var(--sorath-white-color);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    transition: color 0.35s ease;
+}
+
+.diamonds-filter-toggle[aria-expanded="true"] .diamonds-filter-group-title {
+    color: var(--primary-sorath-color);
+}
+
+.diamonds-sidebar-list--simple {
+    gap: 8px;
+}
+
+.diamonds-sidebar-list--simple a {
+    padding: 8px 10px;
+}
+
+.diamonds-sidebar-list a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none;
+    transition: border-color 0.35s ease, background-color 0.35s ease, color 0.35s ease, transform 0.35s ease;
+}
+
+.diamonds-shape-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.diamonds-shape-thumb {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.04);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.diamonds-shape-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.diamonds-shape-thumb--all {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 13px;
+}
+
+.diamonds-sidebar-list a:hover {
+    border-color: rgba(149, 85, 73, 0.55);
+    background: rgba(149, 85, 73, 0.12);
+    color: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+}
+
+.diamonds-sidebar-list a.is-active {
+    border-color: rgba(149, 85, 73, 0.75);
+    background: rgba(149, 85, 73, 0.18);
+    color: #fff;
+}
+
+.diamonds-sidebar-list a.is-active .diamonds-shape-thumb {
+    border-color: rgba(149, 85, 73, 0.75);
+    box-shadow: 0 0 0 2px rgba(149, 85, 73, 0.2);
+}
+
+.diamonds-sidebar-hint-title {
+    margin: 0 0 10px;
+    color: var(--sorath-white-color);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.diamonds-sidebar-hint-text {
+    margin: 0 0 18px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.diamonds-sidebar-hint-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(149, 85, 73, 0.5);
+    background: rgba(149, 85, 73, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: background-color 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.diamonds-sidebar-hint-link:hover {
+    background: rgba(149, 85, 73, 0.18);
+    border-color: rgba(149, 85, 73, 0.75);
+    transform: translateY(-2px);
+}
+
+.diamonds-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.diamonds-card-wrap {
+    display: block;
+}
+
+.diamonds-card {
+    position: relative;
+    height: 100%;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    overflow: hidden;
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, box-shadow 0.45s ease;
+}
+
+.diamonds-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(149, 85, 73, 0.6);
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.45);
+}
+
+.diamonds-card-media {
+    display: block;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+.diamonds-card-media img,
+.diamonds-card-media video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.02);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), filter 0.45s ease;
+    filter: contrast(1.05) brightness(0.85) saturate(0.95);
+}
+
+.diamonds-card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: 2rem;
+}
+
+.diamonds-card:hover .diamonds-card-media img,
+.diamonds-card:hover .diamonds-card-media video {
+    transform: scale(1.12);
+    filter: contrast(1.1) brightness(0.95) saturate(1.05);
+}
+
+.diamonds-card-body {
+    padding: 16px 16px 18px;
+}
+
+.diamonds-card-title {
+    margin: 0 0 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.diamonds-card-title a {
+    color: var(--sorath-white-color);
+    text-decoration: none;
+    transition: color 0.35s ease;
+}
+
+.diamonds-card:hover .diamonds-card-title a {
+    color: var(--primary-sorath-color);
+}
+
+.diamonds-card-stone-id {
+    margin: 0 0 10px;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.diamonds-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.diamonds-pill {
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.diamonds-pill--media {
+    border-color: rgba(149, 85, 73, 0.45);
+    background: rgba(149, 85, 73, 0.14);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.diamonds-card-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: radial-gradient(circle at center, rgba(3, 3, 3, 0.15) 0%, rgba(3, 3, 3, 0.72) 100%);
+    opacity: 0;
+    transform: scale(1.02);
+    transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.diamonds-card:hover .diamonds-card-overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.diamonds-card-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: auto;
+    min-width: 170px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(149, 85, 73, 0.65);
+    background: rgba(149, 85, 73, 0.12);
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.diamonds-card:hover .diamonds-card-link {
+    background: rgba(149, 85, 73, 0.28);
+    border-color: rgba(149, 85, 73, 0.9);
+}
+
+.diamonds-card-link i {
+    transition: transform 0.35s ease;
+}
+
+.diamonds-card-link:hover i {
+    transform: translateX(4px);
+}
+
+.diamonds-pagination {
+    margin-top: 22px;
+}
+
+@media (max-width: 991.98px) {
+    .diamonds-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .diamonds-sidebar {
+        position: relative;
+        top: auto;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .diamonds-grid {
+        grid-template-columns: 1fr;
+    }
+}
+

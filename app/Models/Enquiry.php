@@ -11,6 +11,8 @@ class Enquiry extends Model
         'product_id',
         'product_name',
         'name',
+        'email',
+        'subject',
         'quantity',
         'phone',
         'comment',
@@ -19,5 +21,20 @@ class Enquiry extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function isContact(): bool
+    {
+        return $this->product_name === 'Contact Page' && $this->product_id === null;
+    }
+
+    public function scopeContact($query)
+    {
+        return $query->whereNull('product_id')->where('product_name', 'Contact Page');
+    }
+
+    public function scopeProduct($query)
+    {
+        return $query->whereNotNull('product_id');
     }
 }

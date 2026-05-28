@@ -29,6 +29,87 @@
             </a>
 
             @php
+                $postMenuOpen = request()->routeIs('post-categories.*') || request()->routeIs('posts.*');
+            @endphp
+
+            <div class="sidebar-dropdown">
+                <button type="button"
+                    class="nav-link sidebar-dropdown-toggle d-flex align-items-center gap-2 w-100 {{ $postMenuOpen ? '' : 'collapsed' }} {{ $postMenuOpen ? 'active' : '' }}"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#postMenu"
+                    aria-expanded="{{ $postMenuOpen ? 'true' : 'false' }}">
+                    <i class="bi bi-journal-text fs-5"></i>
+                    <span class="menu-text">Posts</span>
+                    <i class="bi bi-chevron-down ms-auto submenu-chevron menu-text"></i>
+                </button>
+
+                <div class="collapse {{ $postMenuOpen ? 'show' : '' }}" id="postMenu">
+                    <a href="{{ route('post-categories.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('post-categories.*') ? 'active' : '' }}">
+                        <i class="bi bi-tags fs-5"></i>
+                        <span class="menu-text">Post Category</span>
+                    </a>
+                    <a href="{{ route('posts.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('posts.*') ? 'active' : '' }}">
+                        <i class="bi bi-file-earmark-richtext fs-5"></i>
+                        <span class="menu-text">Post List</span>
+                    </a>
+                </div>
+            </div>
+
+            @php
+                $newsMenuOpen = request()->routeIs('news-categories.*') || request()->routeIs('news.*');
+            @endphp
+
+            <div class="sidebar-dropdown">
+                <button type="button"
+                    class="nav-link sidebar-dropdown-toggle d-flex align-items-center gap-2 w-100 {{ $newsMenuOpen ? '' : 'collapsed' }} {{ $newsMenuOpen ? 'active' : '' }}"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#newsMenu"
+                    aria-expanded="{{ $newsMenuOpen ? 'true' : 'false' }}">
+                    <i class="bi bi-megaphone fs-5"></i>
+                    <span class="menu-text">News & Events</span>
+                    <i class="bi bi-chevron-down ms-auto submenu-chevron menu-text"></i>
+                </button>
+
+                <div class="collapse {{ $newsMenuOpen ? 'show' : '' }}" id="newsMenu">
+                    <a href="{{ route('news-categories.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('news-categories.*') ? 'active' : '' }}">
+                        <i class="bi bi-bookmarks fs-5"></i>
+                        <span class="menu-text">News Category</span>
+                    </a>
+                    <a href="{{ route('news.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('news.*') ? 'active' : '' }}">
+                        <i class="bi bi-newspaper fs-5"></i>
+                        <span class="menu-text">News List</span>
+                    </a>
+                </div>
+            </div>
+
+            @php
+                $enquiryMenuOpen = request()->routeIs('enquiries.product.*') || request()->routeIs('enquiries.contact.*');
+            @endphp
+
+            <div class="sidebar-dropdown">
+                <button type="button"
+                    class="nav-link sidebar-dropdown-toggle d-flex align-items-center gap-2 w-100 {{ $enquiryMenuOpen ? '' : 'collapsed' }} {{ $enquiryMenuOpen ? 'active' : '' }}"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#enquiryMenu"
+                    aria-expanded="{{ $enquiryMenuOpen ? 'true' : 'false' }}">
+                    <i class="bi bi-envelope-paper fs-5"></i>
+                    <span class="menu-text">Enquiries</span>
+                    <i class="bi bi-chevron-down ms-auto submenu-chevron menu-text"></i>
+                </button>
+
+                <div class="collapse {{ $enquiryMenuOpen ? 'show' : '' }}" id="enquiryMenu">
+                    <a href="{{ route('enquiries.product.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('enquiries.product.*') ? 'active' : '' }}">
+                        <i class="bi bi-gem fs-5"></i>
+                        <span class="menu-text">Product Enquiries</span>
+                    </a>
+                    <a href="{{ route('enquiries.contact.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('enquiries.contact.*') ? 'active' : '' }}">
+                        <i class="bi bi-chat-left-text fs-5"></i>
+                        <span class="menu-text">Contact Enquiries</span>
+                    </a>
+                </div>
+            </div>
+
+            @php
                 $productMenuOpen = request()->routeIs('shapes.*') || request()->routeIs('colors.*') || request()->routeIs('clarities.*') || request()->routeIs('cuts.*') || request()->routeIs('products.*');
             @endphp
 

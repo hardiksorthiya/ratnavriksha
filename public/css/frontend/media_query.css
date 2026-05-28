@@ -80,6 +80,10 @@
         height: 160px;
     }
 
+    :root {
+        --hp-header-height: 72px;
+    }
+
     .hp-header-inner {
         min-height: 64px;
     }
@@ -101,6 +105,10 @@
     .hp-header .navbar-collapse {
         background: var(--sorath-background-color);
         padding: 14px 0 8px;
+    }
+
+    .hp-header.hp-header--sticky .navbar-collapse {
+        background: var(--primary-sorath-color);
     }
 
     .hp-contact-btn {
@@ -145,6 +153,180 @@
 }
 
 @media (max-width: 991.98px) {
+    .about-mission-header {
+        margin-bottom: 36px;
+    }
+
+    .about-mission-card {
+        padding: 28px 22px 26px;
+    }
+
+    .about-process-header {
+        margin-bottom: 40px;
+    }
+
+    .about-process-steps {
+        flex-direction: column;
+        align-items: center;
+        gap: 36px;
+    }
+
+    .about-process-step {
+        flex: none;
+        width: 100%;
+        max-width: 320px;
+    }
+
+    .about-process-step-text {
+        max-width: 280px;
+    }
+
+    .about-founder-header {
+        margin-bottom: 36px;
+    }
+
+    .about-founder-photo-wrap {
+        aspect-ratio: 3 / 2;
+    }
+
+    .about-founder-body {
+        padding: 24px 20px 28px;
+    }
+
+    .about-commitment-header {
+        margin-bottom: 36px;
+    }
+
+    .about-commitment-card {
+        padding: 28px 18px 26px;
+    }
+
+    .about-cta-banner {
+        min-height: 0;
+        padding: 40px 28px;
+    }
+
+    .about-cta-banner::before {
+        background-position: center;
+        opacity: 0.45;
+    }
+
+    .about-cta-banner::after {
+        background: linear-gradient(
+            180deg,
+            #0a0a0a 0%,
+            rgba(10, 10, 10, 0.92) 45%,
+            rgba(10, 10, 10, 0.75) 100%
+        );
+    }
+
+    .about-cta-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .about-cta-divider {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .about-cta-text {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-info {
+        padding-right: 0;
+        border-right: none;
+        padding-bottom: 18px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .contact-form-wrap {
+        padding-left: 0;
+        padding-top: 8px;
+        padding: 20px 16px 22px;
+    }
+
+    .contact-block-label {
+        margin-bottom: 12px;
+    }
+
+    .contact-info-heading {
+        font-size: clamp(1.9rem, 8vw, 2.7rem);
+    }
+
+    .contact-info-intro {
+        margin-bottom: 22px;
+        font-size: 15px;
+    }
+
+    .contact-info-primary {
+        font-size: 1.2rem;
+    }
+
+    .contact-info-text {
+        font-size: 0.9rem;
+    }
+
+    .contact-info-item {
+        padding: 14px 14px;
+        gap: 12px;
+    }
+
+    .contact-info-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .contact-form-control {
+        font-size: 15px;
+    }
+
+    .contact-form-submit {
+        padding: 13px 18px;
+        font-size: 14px;
+    }
+
+    .contact-map-shell {
+        padding: 16px;
+    }
+
+    .contact-map-frame-wrap,
+    .contact-map-frame {
+        min-height: 240px;
+    }
+
+    .contact-map-pin {
+        left: 14px;
+        bottom: 12px;
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .contact-business-card {
+        padding: 18px 16px;
+    }
+
+    .contact-faq-header {
+        margin-bottom: 32px;
+    }
+
+    .contact-faq-trigger {
+        padding: 16px 18px;
+    }
+
+    .contact-faq-question {
+        font-size: 1rem;
+    }
+
+    .contact-faq-answer {
+        padding: 0 18px 16px;
+        font-size: 13px;
+    }
+
     .about-who-image-wrap {
         max-width: 520px;
         margin: 0 auto;
