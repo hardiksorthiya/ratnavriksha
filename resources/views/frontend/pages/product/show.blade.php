@@ -29,15 +29,13 @@
                                                     @if($item['type'] === 'video')
                                                         <video src="{{ $item['src'] }}" class="product-main-media" loop muted playsinline preload="metadata"></video>
                                                     @else
-                                                        <img src="{{ $item['src'] }}" alt="{{ $product->name }}" class="product-main-media">
+                                                        <img src="{{ $item['src'] }}"
+                                                            alt="{{ !empty($item['is_placeholder']) ? 'Ratnavriksha' : $product->name }}"
+                                                            class="product-main-media {{ !empty($item['is_placeholder']) ? 'product-main-media--logo' : '' }}">
                                                     @endif
                                                 </div>
                                             @endforeach
                                         </div>
-                                    </div>
-                                @else
-                                    <div class="product-main-placeholder">
-                                        <span>No media available</span>
                                     </div>
                                 @endif
                             </div>
@@ -66,7 +64,9 @@
                                             <video src="{{ $item['src'] }}" muted playsinline preload="metadata"></video>
                                             <span class="product-thumb-badge">Video</span>
                                         @else
-                                            <img src="{{ $item['src'] }}" alt="">
+                                            <img src="{{ $item['src'] }}"
+                                                alt=""
+                                                class="{{ !empty($item['is_placeholder']) ? 'product-thumb-logo' : '' }}">
                                         @endif
                                     </button>
                                 @endforeach
@@ -80,7 +80,9 @@
                         <h1 class="product-title font-pilo">{{ $product->name ?? 'Untitled Product' }}</h1>
 
                         @if($product->short_description)
-                            <p class="product-short-desc">{{ $product->short_description }}</p>
+                            <div class="product-short-desc product-rich-content">
+                                {!! $product->short_description !!}
+                            </div>
                         @endif
 
                         @if(session('enquiry_success'))
@@ -141,7 +143,9 @@
             @if($product->long_description)
                 <div class="product-long-desc">
                     <h2 class="product-long-desc-title font-pilo">Description</h2>
-                    <div class="product-long-desc-body">{!! nl2br(e($product->long_description)) !!}</div>
+                    <div class="product-long-desc-body product-rich-content">
+                        {!! $product->long_description !!}
+                    </div>
                 </div>
             @endif
         </div>

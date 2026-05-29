@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PostCategoryController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductImportController;
 use App\Http\Controllers\Admin\ShapeController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Frontend\BlogController;
@@ -35,6 +36,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('clarities', ClarityController::class);
     Route::resource('cuts', CutController::class);
     Route::resource('products', ProductController::class);
+    Route::get('products-import', [ProductImportController::class, 'index'])->name('products.import.index');
+    Route::get('products-import/template', [ProductImportController::class, 'downloadTemplate'])->name('products.import.template');
+    Route::post('products-import', [ProductImportController::class, 'import'])->name('products.import.store');
     Route::resource('post-categories', PostCategoryController::class);
     Route::resource('posts', PostController::class);
     Route::resource('news-categories', NewsCategoryController::class);

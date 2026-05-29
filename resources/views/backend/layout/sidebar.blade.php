@@ -110,7 +110,7 @@
             </div>
 
             @php
-                $productMenuOpen = request()->routeIs('shapes.*') || request()->routeIs('colors.*') || request()->routeIs('clarities.*') || request()->routeIs('cuts.*') || request()->routeIs('products.*');
+                $productMenuOpen = request()->routeIs('shapes.*') || request()->routeIs('colors.*') || request()->routeIs('clarities.*') || request()->routeIs('cuts.*') || request()->routeIs('products.*') || request()->routeIs('products.import.*');
             @endphp
 
             <div class="sidebar-dropdown">
@@ -141,9 +141,13 @@
                         <i class="bi bi-scissors fs-5"></i>
                         <span class="menu-text">Cuts</span>
                     </a>
-                    <a href="{{ route('products.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('products.*') ? 'active' : '' }}">
+                    <a href="{{ route('products.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('products.index') || request()->routeIs('products.create') || request()->routeIs('products.edit') ? 'active' : '' }}">
                         <i class="bi bi-list-ul fs-5"></i>
                         <span class="menu-text">Product List</span>
+                    </a>
+                    <a href="{{ route('products.import.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('products.import.*') ? 'active' : '' }}">
+                        <i class="bi bi-file-earmark-spreadsheet fs-5"></i>
+                        <span class="menu-text">Bulk Upload (CSV)</span>
                     </a>
                 </div>
             </div>        </div>

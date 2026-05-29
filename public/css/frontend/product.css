@@ -112,6 +112,20 @@
     -webkit-user-drag: none;
 }
 
+.product-main-media--logo {
+    object-fit: contain;
+    max-width: 55%;
+    max-height: 55%;
+    margin: auto;
+    opacity: 0.92;
+}
+
+.product-thumb-logo {
+    object-fit: contain;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.04);
+}
+
 .product-main-placeholder {
     display: flex;
     flex-direction: column;
@@ -365,6 +379,106 @@
     line-height: 1.8;
     color: rgba(255, 255, 255, 0.72);
     max-width: 900px;
+}
+
+.product-rich-content > *:first-child {
+    margin-top: 0;
+}
+
+.product-rich-content > *:last-child {
+    margin-bottom: 0;
+}
+
+.product-rich-content h1,
+.product-rich-content h2,
+.product-rich-content h3,
+.product-rich-content h4,
+.product-rich-content h5,
+.product-rich-content h6 {
+    margin: 1.4em 0 0.65em;
+    color: #fff;
+    line-height: 1.3;
+    font-family: var(--font-family-philo-sorath);
+    font-weight: 700;
+}
+
+.product-rich-content h2 {
+    font-size: clamp(1.45rem, 2.6vw, 1.85rem);
+}
+
+.product-rich-content h3 {
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+}
+
+.product-rich-content p {
+    margin: 0 0 1.1em;
+}
+
+.product-rich-content ul,
+.product-rich-content ol {
+    margin: 0 0 1.2em;
+    padding-left: 1.35em;
+}
+
+.product-rich-content li + li {
+    margin-top: 0.35em;
+}
+
+.product-rich-content blockquote {
+    margin: 1.4em 0;
+    padding: 14px 18px;
+    border-left: 3px solid var(--primary-sorath-color);
+    border-radius: 8px;
+    background: rgba(149, 85, 73, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    font-style: italic;
+}
+
+.product-rich-content a {
+    color: #d9a186;
+    text-decoration: underline;
+}
+
+.product-rich-content a:hover {
+    color: #efb494;
+}
+
+.product-rich-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin: 1.1em 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.product-rich-content hr {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    margin: 1.5em 0;
+}
+
+.product-rich-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.1em 0;
+}
+
+.product-rich-content table th,
+.product-rich-content table td {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 10px 12px;
+    vertical-align: top;
+}
+
+.product-rich-content table th {
+    background: rgba(149, 85, 73, 0.14);
+    color: #fff;
+}
+
+.product-rich-content strong,
+.product-rich-content b {
+    color: #fff;
+    font-weight: 600;
 }
 
 @media (max-width: 991.98px) {

@@ -9,6 +9,7 @@ use App\Models\Cut;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Shape;
+use App\Support\ProductMedia;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -72,27 +73,16 @@ class DiamondController extends Controller
 
     private function resolveListMedia(Product $product): array
     {
-        if (!empty($product->featured_path)) {
+        if (ProductMedia::hasFeatured($product)) {
             return [
-                'src' => $this->srcFromStoragePath($product->featured_path),
+                'src' => ProductMedia::srcFromStoragePath($product->featured_path),
                 'type' => $product->featured_type === 'video' ? 'video' : 'image',
             ];
         }
 
-        $firstMedia = $product->media->first(function ($m) {
-            return !empty($m->path);
-        });
-
-        if ($firstMedia) {
-            return [
-                'src' => $this->srcFromStoragePath($firstMedia->path),
-                'type' => $firstMedia->type === 'video' ? 'video' : 'image',
-            ];
-        }
-
         return [
-            'src' => null,
-            'type' => null,
+            'src' => ProductMedia::placeholderSrc(),
+            'type' => 'image',
         ];
     }
 

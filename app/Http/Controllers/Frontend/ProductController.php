@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Support\ProductMedia;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -17,8 +18,10 @@ class ProductController extends Controller
 
         $galleryItems = collect();
 
-        if ($product->featured_path) {
+        if (ProductMedia::hasFeatured($product)) {
             $galleryItems->push($this->galleryItem('featured', $product->featured_type, $product->featured_path));
+        } else {
+            $galleryItems->push(ProductMedia::placeholderGalleryItem());
         }
 
         foreach ($product->media as $media) {
@@ -30,13 +33,12 @@ class ProductController extends Controller
 
     private function galleryItem(string $key, string $type, string $path): array
     {
-        $storagePath = '/storage/'.ltrim(str_replace('\\', '/', $path), '/');
-
         return [
             'key' => $key,
             'type' => $type,
             'path' => $path,
-            'src' => rtrim(request()->getBaseUrl(), '/').$storagePath,
+            'src' => ProductMedia::srcFromStoragePath($path),
+            'is_placeholder' => false,
         ];
     }
 }

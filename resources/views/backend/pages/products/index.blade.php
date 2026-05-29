@@ -9,9 +9,14 @@
             <h2 class="dash-title mb-1">Product List</h2>
             <p class="dash-subtitle mb-0">Manage diamond products</p>
         </div>
-        <a href="{{ route('products.create') }}" class="btn btn-gold">
-            <i class="bi bi-plus-lg me-1"></i> Add Product
-        </a>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{{ route('products.import.index') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-file-earmark-spreadsheet me-1"></i> Bulk Upload
+            </a>
+            <a href="{{ route('products.create') }}" class="btn btn-gold">
+                <i class="bi bi-plus-lg me-1"></i> Add Product
+            </a>
+        </div>
     </div>
 
     @if(session('success'))

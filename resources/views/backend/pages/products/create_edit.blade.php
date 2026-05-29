@@ -230,11 +230,13 @@
 
                         <div class="mb-3">
                             <label class="form-label">Short Description</label>
-                            <textarea name="short_description" class="form-control" rows="3">{{ old('short_description', optional($product)->short_description ?? '') }}</textarea>
+                            <textarea name="short_description" class="form-control font-monospace" rows="4" placeholder="<p>Brief product summary with HTML...</p>">{{ old('short_description', optional($product)->short_description ?? '') }}</textarea>
+                            <div class="form-text">HTML is supported (e.g. &lt;p&gt;, &lt;strong&gt;, &lt;ul&gt;, &lt;a&gt;).</div>
                         </div>
                         <div class="mb-0">
                             <label class="form-label">Long Description</label>
-                            <textarea name="long_description" class="form-control" rows="6">{{ old('long_description', optional($product)->long_description ?? '') }}</textarea>
+                            <textarea name="long_description" class="form-control font-monospace" rows="8" placeholder="<h2>Details</h2><p>Full description with HTML...</p>">{{ old('long_description', optional($product)->long_description ?? '') }}</textarea>
+                            <div class="form-text">HTML is supported. Content is rendered on the product detail page.</div>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Remarks</label>

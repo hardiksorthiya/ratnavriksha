@@ -44,18 +44,15 @@
                             <div class="diamonds-card-wrap">
                                 <article class="diamonds-card">
                                     <a class="diamonds-card-media" href="{{ route('product.show', $product->slug) }}" aria-label="{{ $product->name }}">
-                                        @if(!empty($product->list_media_src))
-                                            @if($product->list_media_type === 'video')
-                                                <video autoplay muted loop playsinline preload="metadata">
-                                                    <source src="{{ $product->list_media_src }}">
-                                                </video>
-                                            @else
-                                                <img src="{{ $product->list_media_src }}" alt="{{ $product->name }}" loading="lazy">
-                                            @endif
+                                        @if($product->list_media_type === 'video')
+                                            <video autoplay muted loop playsinline preload="metadata">
+                                                <source src="{{ $product->list_media_src }}">
+                                            </video>
                                         @else
-                                            <div class="diamonds-card-placeholder" aria-hidden="true">
-                                                <i class="fa-solid fa-gem"></i>
-                                            </div>
+                                            <img src="{{ $product->list_media_src }}"
+                                                alt="{{ $product->name }}"
+                                                class="{{ empty($product->featured_path) ? 'diamonds-card-logo' : '' }}"
+                                                loading="lazy">
                                         @endif
 
                                         <div class="diamonds-card-overlay">

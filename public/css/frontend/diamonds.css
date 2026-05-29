@@ -288,14 +288,17 @@
     filter: contrast(1.05) brightness(0.85) saturate(0.95);
 }
 
-.diamonds-card-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(255, 255, 255, 0.35);
-    font-size: 2rem;
+.diamonds-card-media .diamonds-card-logo {
+    object-fit: contain;
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    transform: none;
+    filter: none;
+}
+
+.diamonds-card:hover .diamonds-card-media .diamonds-card-logo {
+    transform: scale(1.04);
+    filter: none;
 }
 
 .diamonds-card:hover .diamonds-card-media img,
