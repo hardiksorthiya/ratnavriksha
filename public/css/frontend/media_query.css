@@ -27,11 +27,17 @@
     }
 
     .service-card-content {
-        padding: 34px 18px 24px;
+        padding: 30px 16px 22px;
+        gap: 12px;
     }
 
     .service-card-title {
         font-size: 15px;
+    }
+
+    .service-section .service-item {
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 2rem;
     }
 
     .category-title-right {
@@ -387,7 +393,8 @@
     }
 
     .service-item {
-        --bs-gutter-y: 1.25rem;
+        --bs-gutter-x: 1rem;
+        --bs-gutter-y: 1.75rem;
     }
 
     .service-card {
@@ -397,16 +404,17 @@
     }
 
     .service-card-content {
-        padding: 28px 14px 20px;
-        gap: 6px;
+        padding: 26px 12px 18px;
+        gap: 10px;
     }
 
     .service-card-title {
         font-size: 13px;
     }
 
-    .service-card-content svg {
-        width: 18px;
+    .service-card-icon {
+        width: 34px;
+        height: 34px;
     }
 
     .hero-title {

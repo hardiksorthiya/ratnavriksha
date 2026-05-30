@@ -1,29 +1,29 @@
 @php
     $processSteps = [
         [
-            'icon' => 'fa-mountain',
-            'title' => 'Sourcing',
-            'text' => 'We ethically source rough diamonds from trusted partners worldwide.',
+            'icon' => 'fa-leaf',
+            'title' => 'Ethical Sourcing',
+            'text' => 'We partner with trusted suppliers and responsible mining networks to source premium-quality diamonds that meet the highest ethical and industry standards.',
         ],
         [
             'icon' => 'fa-gem',
-            'title' => 'Selection',
-            'text' => 'Each rough diamond is carefully handpicked for its quality and potential.',
+            'title' => 'Expert Selection',
+            'text' => 'Every diamond is carefully evaluated by experienced professionals who assess its cut potential, clarity, color, and overall quality before selection.',
         ],
         [
-            'icon' => 'fa-compact-disc',
-            'title' => 'Crafting',
-            'text' => 'Expert artisans cut and polish every diamond to bring out its brilliance.',
+            'icon' => 'fa-wand-magic-sparkles',
+            'title' => 'Precision Craftsmanship',
+            'text' => 'Our skilled craftsmen and diamond specialists transform carefully chosen stones into brilliant masterpieces through precision cutting and polishing techniques.',
         ],
         [
-            'icon' => 'fa-magnifying-glass',
-            'title' => 'Inspection',
-            'text' => 'Every diamond undergoes strict quality checks and certification.',
+            'icon' => 'fa-clipboard-check',
+            'title' => 'Quality Inspection',
+            'text' => 'Each diamond undergoes rigorous quality control and certification checks to ensure it meets our strict standards for brilliance, authenticity, and excellence.',
         ],
         [
-            'icon' => 'fa-box',
-            'title' => 'Delivery',
-            'text' => 'We deliver your diamond safely and securely, ready to be treasured forever.',
+            'icon' => 'fa-truck-fast',
+            'title' => 'Global Delivery',
+            'text' => 'Once approved, every diamond is securely packaged and delivered through trusted logistics partners, ensuring safe and timely delivery to clients worldwide.',
         ],
     ];
 @endphp
@@ -32,7 +32,7 @@
     <div class="container">
         <div class="about-process-header text-center">
             <span class="about-who-label">Our Process</span>
-            <h2 class="about-who-title font-pilo">From Nature to You</h2>
+            <h2 class="about-who-title font-pilo">From Mine to Masterpiece</h2>
             <div class="about-who-divider mx-auto" aria-hidden="true">
                 <span class="about-who-divider-line"></span>
                 <span class="about-who-divider-icon">
@@ -42,6 +42,7 @@
                 </span>
                 <span class="about-who-divider-line"></span>
             </div>
+            <p class="about-mission-intro">A meticulous journey of craftsmanship, precision, and trust behind every diamond we deliver.</p>
         </div>
 
         <div class="about-process-timeline">

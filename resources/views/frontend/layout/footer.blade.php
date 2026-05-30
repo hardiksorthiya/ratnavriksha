@@ -5,7 +5,9 @@
                 <div class="footer-logo">
                     <img src="{{ asset('images/logo.png') }}" alt="Ratnavriksha" class="img-fluid">
                 </div>
-                <p class="footer-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+                <p class="footer-description">Ratnavriksha Gems is a trusted name in the diamond industry, dedicated to
+                    delivering exceptional natural and lab-grown diamonds with uncompromising quality, ethical sourcing,
+                    and complete transparency. </p>
             </div>
 
             <div class="col-md-4 text-end">
@@ -38,22 +40,26 @@
 
         <div class="row footer-bottom align-items-center g-3">
             <div class="col-md-6 col-12">
-                <p class="footer-copyright mb-0">Copyright &copy; {{ date('Y') }} Ratnavriksha. All rights reserved.</p>
+                <p class="footer-copyright mb-0">Copyright &copy; {{ date('Y') }} Ratnavriksha. All rights reserved.
+                </p>
             </div>
             <div class="col-md-6 col-12">
                 <ul class="footer-social-links">
                     <li>
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Facebook">
                             <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                            aria-label="Instagram">
                             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"
+                            aria-label="X (Twitter)">
                             <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                         </a>
                     </li>

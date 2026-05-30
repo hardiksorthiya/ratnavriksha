@@ -562,9 +562,19 @@ section.vision-section {
 
 /* services */
 
+.service-section .service-content {
+    margin-bottom: 8px;
+}
+
+.service-section .service-item {
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 2.5rem;
+}
+
 .services-subtitle {
     max-width: 680px;
     padding: 0 12px;
+    margin-top: 12px;
 }
 
 .service-card {
@@ -605,22 +615,44 @@ section.vision-section {
     position: absolute;
     inset: 0;
     z-index: 1;
-    padding: 42px 24px 28px;
-    gap: 10px;
+    padding: 32px 18px 26px;
+    gap: 14px;
+}
+
+.service-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    color: var(--sorath-white-color);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.service-card-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.service-card-icon svg [fill]:not([fill="none"]) {
+    fill: none;
+}
+
+.service-card:hover .service-card-icon {
+    transform: translateY(-2px);
+    opacity: 1;
 }
 
 .service-card-title {
     margin: 0;
-    font-size: 16px;
-    line-height: 1.35;
+    font-size: 15px;
+    line-height: 1.4;
     color: var(--sorath-white-color);
+    flex-shrink: 0;
 }
 
-.service-card-content svg {
-    width: 24px;
-    height: auto;
-    fill: var(--sorath-white-color);
-}
 h2.service-title.font-pilo {
     font-size: clamp(1.75rem, 4vw, 3rem);
 }
@@ -885,7 +917,11 @@ h2.service-title.font-pilo {
 .about-process-header .about-who-divider {
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 0;
+    margin-bottom: 20px;
+}
+
+.about-process-header .about-mission-intro {
+    margin-top: 0;
 }
 
 .about-process-timeline {
