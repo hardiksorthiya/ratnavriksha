@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="about-center-image position-relative d-flex pt-2">
-                        <img src="{{ asset('images/home/ab1.png') }}" alt="About" class="img-fluid img-about-home">
+                        <img src="{{ asset('images/home/01.jpeg') }}" alt="About" class="img-fluid img-about-home">
                     </div>
                 </div>
                 <div class="col-lg-3">

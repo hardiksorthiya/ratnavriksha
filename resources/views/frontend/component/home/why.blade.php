@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="about-center-image position-relative d-flex pt-2">
-                    <img src="{{ asset('images/home/ab1.png') }}" alt="Why Ratnavriksha Gems" class="img-fluid img-about-home">
+                    <img src="{{ asset('images/home/03.jpeg') }}" alt="Why Ratnavriksha Gems" class="img-fluid img-about-home">
                 </div>
             </div>
             <div class="col-md-6">

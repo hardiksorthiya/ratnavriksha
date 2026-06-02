@@ -21,7 +21,7 @@
                     <div class="row d-flex align-items-center justify-content-center">
                         <div class="col-lg-6">
                             <div class="vision-image-1">
-                                <img src="{{ asset('images/home/vis1.png') }}" alt="Vision">
+                                <img src="{{ asset('images/home/02.jpeg') }}" alt="Vision">
                             </div>
                         </div>
                         <div class="col-lg-6">
