@@ -30,6 +30,14 @@
 
     @include('frontend.layout.footer')
 
+    <a href="https://wa.me/917900521005?text=Hello%20Ratnavriksha%20Team%2C%20I%20want%20to%20enquire%20about%20your%20diamonds."
+        class="floating-whatsapp-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+    </a>
+
     <script src="{{ asset('js/frontend/jquery.min.js') }}"></script>
     <script src="{{ asset('js/frontend/slick.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>

@@ -60,6 +60,37 @@ body {
     border-color: var(--sorath-white-color);
     color: var(--sorath-white-color);
 }
+
+.floating-whatsapp-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1100;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid rgba(37, 211, 102, 0.7);
+    background: #25d366;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(37, 211, 102, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.floating-whatsapp-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 14px 28px rgba(37, 211, 102, 0.48);
+    color: #fff;
+}
+
+.floating-whatsapp-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.28), 0 10px 24px rgba(37, 211, 102, 0.4);
+}
 img {
     width: 100%;
     

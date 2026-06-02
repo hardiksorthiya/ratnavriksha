@@ -221,6 +221,31 @@
     padding: 12px 24px;
 }
 
+.product-whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    font-size: 15px;
+    padding: 12px 24px;
+    border-radius: 60px;
+    border: 1px solid #25d366;
+    background: rgba(37, 211, 102, 0.14);
+    color: #d6ffe8;
+    transition: all 0.25s ease;
+}
+
+.product-whatsapp-btn i {
+    font-size: 18px;
+}
+
+.product-whatsapp-btn:hover {
+    background: #25d366;
+    border-color: #25d366;
+    color: #08130d;
+    transform: translateY(-1px);
+}
+
 .product-enquiry-alert {
     border-radius: 10px;
     margin-bottom: 20px;
@@ -514,6 +539,10 @@
     .product-enquiry-btn {
         width: 100%;
         justify-content: center;
+    }
+
+    .product-whatsapp-btn {
+        width: 100%;
     }
 
     .product-spec-table th,
