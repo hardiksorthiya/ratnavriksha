@@ -5,7 +5,7 @@
         <div class="contact-content text-center">
             <h2 class="contact-title font-pilo">Luxury Elegance</h2>
             <p class="contact-desc">When you take a moment to promise a lifetime</p>
-            <a href="route('contact')" class="btn btn-primary-sorath">
+            <a href="{{ route('contact') }}" class="btn btn-primary-sorath">
                 Contact Us
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2.75 4.02">
                     <path
