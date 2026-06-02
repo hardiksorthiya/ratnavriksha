@@ -15,7 +15,7 @@
             </div>
 
             <div class="col-md-4 d-flex justify-content-md-end">
-                <a href="#" class="footer-touch" aria-label="Get in touch">
+                <a href="{{ route('contact') }}" class="footer-touch" aria-label="Get in touch">
                     <svg class="footer-touch-ring" viewBox="0 0 200 200" aria-hidden="true">
                         <defs>
                             <path id="footerTouchCircle" fill="none"

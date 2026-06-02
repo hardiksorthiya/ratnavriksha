@@ -33,7 +33,7 @@
                 <div class="col-lg-3">
                     <div class="about-left-section position-relative">
                         <h2 class="about-title">About Ratnavriksha Gems</h2>
-                        <a href="#" class="btn btn-primary-sorath mt-4">
+                        <a href="{{ route('about') }}" class="btn btn-primary-sorath mt-4">
                             Read More
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2.75 4.02">
                                 <path
