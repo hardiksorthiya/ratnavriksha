@@ -3,17 +3,18 @@
         ->map(fn ($shape) => [
             'name' => $shape->name ?? 'Shape',
             'img' => $shape->image_src ?? asset('images/home/shapes/round.png'),
+            'url' => route('diamonds', ['shape_ids' => [$shape->id]]),
         ])
         ->values()
         ->all();
 
     if (empty($shapes)) {
         $shapes = [
-            ['name' => 'Oval', 'img' => asset('images/home/shapes/oval.png')],
-            ['name' => 'Cushion', 'img' => asset('images/home/shapes/cushion.png')],
-            ['name' => 'Round', 'img' => asset('images/home/shapes/round.png')],
-            ['name' => 'Princess', 'img' => asset('images/home/shapes/princess.png')],
-            ['name' => 'Pear', 'img' => asset('images/home/shapes/pear.png')],
+            ['name' => 'Oval', 'img' => asset('images/home/shapes/oval.png'), 'url' => route('diamonds')],
+            ['name' => 'Cushion', 'img' => asset('images/home/shapes/cushion.png'), 'url' => route('diamonds')],
+            ['name' => 'Round', 'img' => asset('images/home/shapes/round.png'), 'url' => route('diamonds')],
+            ['name' => 'Princess', 'img' => asset('images/home/shapes/princess.png'), 'url' => route('diamonds')],
+            ['name' => 'Pear', 'img' => asset('images/home/shapes/pear.png'), 'url' => route('diamonds')],
         ];
     }
 
@@ -48,15 +49,17 @@
             <div class="category-slider">
                 @foreach ($sliderShapes as $shape)
                     <div>
-                        <div class="category-item">
-                            <div class="category-item-visual">
-                                <div class="category-item-circle">
-                                    <img src="{{ $shape['img'] }}"
-                                        alt="{{ $shape['name'] }}" class="category-item-img">
+                        <a href="{{ $shape['url'] ?? route('diamonds') }}" class="category-item-link" aria-label="View {{ $shape['name'] }} diamonds">
+                            <div class="category-item">
+                                <div class="category-item-visual">
+                                    <div class="category-item-circle">
+                                        <img src="{{ $shape['img'] }}"
+                                            alt="{{ $shape['name'] }}" class="category-item-img">
+                                    </div>
                                 </div>
+                                <p class="category-item-label">{{ $shape['name'] }}</p>
                             </div>
-                            <p class="category-item-label">{{ $shape['name'] }}</p>
-                        </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
