@@ -1,12 +1,26 @@
 @php
-    $shapes = [
-        ['name' => 'Oval', 'img' => 'oval.png'],
-        ['name' => 'Cushion', 'img' => 'cushion.png'],
-        ['name' => 'Round', 'img' => 'round.png'],
-        ['name' => 'Princess', 'img' => 'princess.png'],
-        ['name' => 'Pear', 'img' => 'pear.png'],
-    ];
-    $sliderShapes = array_merge($shapes, $shapes);
+    $shapes = ($homeShapes ?? collect())
+        ->map(fn ($shape) => [
+            'name' => $shape->name ?? 'Shape',
+            'img' => $shape->image_src ?? asset('images/home/shapes/round.png'),
+        ])
+        ->values()
+        ->all();
+
+    if (empty($shapes)) {
+        $shapes = [
+            ['name' => 'Oval', 'img' => asset('images/home/shapes/oval.png')],
+            ['name' => 'Cushion', 'img' => asset('images/home/shapes/cushion.png')],
+            ['name' => 'Round', 'img' => asset('images/home/shapes/round.png')],
+            ['name' => 'Princess', 'img' => asset('images/home/shapes/princess.png')],
+            ['name' => 'Pear', 'img' => asset('images/home/shapes/pear.png')],
+        ];
+    }
+
+    $sliderShapes = $shapes;
+    if (count($sliderShapes) < 6) {
+        $sliderShapes = array_merge($shapes, $shapes);
+    }
 @endphp
 
 <section class="category-sorath py-5">
@@ -37,7 +51,7 @@
                         <div class="category-item">
                             <div class="category-item-visual">
                                 <div class="category-item-circle">
-                                    <img src="{{ asset('images/home/shapes/' . $shape['img']) }}"
+                                    <img src="{{ $shape['img'] }}"
                                         alt="{{ $shape['name'] }}" class="category-item-img">
                                 </div>
                             </div>

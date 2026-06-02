@@ -1,13 +1,46 @@
 @php
-    $baseFilters = request()->query();
     $filterRoute = $filterRoute ?? 'diamonds';
     $hideCategoryFilter = $hideCategoryFilter ?? false;
+    $activeShapeIds = collect($activeShapeIds ?? [])->map(fn ($id) => (string) $id)->all();
+    $activeColorIds = collect($activeColorIds ?? [])->map(fn ($id) => (string) $id)->all();
+    $activeCutIds = collect($activeCutIds ?? [])->map(fn ($id) => (string) $id)->all();
+    $activeClarityIds = collect($activeClarityIds ?? [])->map(fn ($id) => (string) $id)->all();
+    $activeCategoryIds = collect($activeCategoryIds ?? [])->map(fn ($id) => (string) $id)->all();
+    $persistedQuery = request()->except([
+        'shape_id',
+        'shape_ids',
+        'color_id',
+        'color_ids',
+        'cut_id',
+        'cut_ids',
+        'clarity_id',
+        'clarity_ids',
+        'category_id',
+        'category_ids',
+        'page',
+    ]);
+    $hasActiveFilters = !empty($activeShapeIds) || !empty($activeColorIds) || !empty($activeCutIds) || !empty($activeClarityIds) || !empty($activeCategoryIds);
 @endphp
 
 <aside class="diamonds-sidebar">
     <div class="diamonds-sidebar-card">
         <h3 class="diamonds-sidebar-title font-pilo">Filters</h3>
         <p class="diamonds-sidebar-subtitle">Refine diamonds by category, shape, color, cut and clarity.</p>
+        <div class="diamonds-filter-actions">
+            <button type="submit" form="diamondsFilterForm" class="diamonds-filter-apply">Apply Filters</button>
+            <a href="{{ route($filterRoute, $persistedQuery) }}" class="diamonds-filter-reset {{ $hasActiveFilters ? '' : 'is-disabled' }}">Reset</a>
+        </div>
+
+        <form id="diamondsFilterForm" method="GET" action="{{ route($filterRoute) }}">
+            @foreach ($persistedQuery as $key => $value)
+                @if (is_array($value))
+                    @foreach ($value as $nestedValue)
+                        <input type="hidden" name="{{ $key }}[]" value="{{ $nestedValue }}">
+                    @endforeach
+                @else
+                    <input type="hidden" name="{{ $key }}" value="{{ $value }}">
+                @endif
+            @endforeach
 
         <div class="diamonds-filter-accordion" id="diamondsFilterAccordion">
             <div class="diamonds-filter-group">
@@ -17,26 +50,17 @@
                 </button>
                 <div id="diamondsFilterShape" class="collapse show diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list">
-                        <li>
-                            <a href="{{ route($filterRoute, array_merge($baseFilters, ['shape_id' => null])) }}" class="{{ empty($activeShapeId) ? 'is-active' : '' }}">
-                                <span class="diamonds-shape-item">
-                                    <span class="diamonds-shape-thumb diamonds-shape-thumb--all">
-                                        <i class="fa-solid fa-gem" aria-hidden="true"></i>
-                                    </span>
-                                    <span>All Shapes</span>
-                                </span>
-                            </a>
-                        </li>
                         @foreach ($shapes as $shape)
                             <li>
-                                <a href="{{ route($filterRoute, array_merge($baseFilters, ['shape_id' => $shape->id])) }}" class="{{ (string) $activeShapeId === (string) $shape->id ? 'is-active' : '' }}">
+                                <label class="diamonds-filter-option {{ in_array((string) $shape->id, $activeShapeIds, true) ? 'is-active' : '' }}">
                                     <span class="diamonds-shape-item">
+                                        <input type="checkbox" class="diamonds-filter-checkbox" name="shape_ids[]" value="{{ $shape->id }}" {{ in_array((string) $shape->id, $activeShapeIds, true) ? 'checked' : '' }}>
                                         <span class="diamonds-shape-thumb">
                                             <img src="{{ $shape->list_image_src }}" alt="{{ $shape->name }}" loading="lazy">
                                         </span>
                                         <span>{{ $shape->name }}</span>
                                     </span>
-                                </a>
+                                </label>
                             </li>
                         @endforeach
                     </ul>
@@ -45,15 +69,21 @@
 
             @if(!$hideCategoryFilter && isset($categories) && $categories->isNotEmpty())
                 <div class="diamonds-filter-group">
-                    <button class="diamonds-filter-toggle {{ empty($activeCategoryId) ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterCategory" aria-expanded="{{ !empty($activeCategoryId) ? 'true' : 'false' }}" aria-controls="diamondsFilterCategory">
+                    <button class="diamonds-filter-toggle {{ empty($activeCategoryIds) ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterCategory" aria-expanded="{{ !empty($activeCategoryIds) ? 'true' : 'false' }}" aria-controls="diamondsFilterCategory">
                         <span class="diamonds-filter-group-title">Category</span>
                         <span class="diamonds-filter-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
                     </button>
-                    <div id="diamondsFilterCategory" class="collapse diamonds-filter-collapse {{ !empty($activeCategoryId) ? 'show' : '' }}" data-bs-parent="#diamondsFilterAccordion">
+                    <div id="diamondsFilterCategory" class="collapse diamonds-filter-collapse {{ !empty($activeCategoryIds) ? 'show' : '' }}" data-bs-parent="#diamondsFilterAccordion">
                         <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
-                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['category_id' => null])) }}" class="{{ empty($activeCategoryId) ? 'is-active' : '' }}"><span>All Categories</span></a></li>
                             @foreach ($categories as $category)
-                                <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['category_id' => $category->id])) }}" class="{{ (string) ($activeCategoryId ?? '') === (string) $category->id ? 'is-active' : '' }}"><span>{{ $category->name }}</span></a></li>
+                                <li>
+                                    <label class="diamonds-filter-option {{ in_array((string) $category->id, $activeCategoryIds, true) ? 'is-active' : '' }}">
+                                        <span class="diamonds-shape-item">
+                                            <input type="checkbox" class="diamonds-filter-checkbox" name="category_ids[]" value="{{ $category->id }}" {{ in_array((string) $category->id, $activeCategoryIds, true) ? 'checked' : '' }}>
+                                            <span>{{ $category->name }}</span>
+                                        </span>
+                                    </label>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -61,50 +91,69 @@
             @endif
 
             <div class="diamonds-filter-group">
-                <button class="diamonds-filter-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterColor" aria-expanded="false" aria-controls="diamondsFilterColor">
+                <button class="diamonds-filter-toggle {{ empty($activeColorIds) ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterColor" aria-expanded="{{ !empty($activeColorIds) ? 'true' : 'false' }}" aria-controls="diamondsFilterColor">
                     <span class="diamonds-filter-group-title">Color</span>
                     <span class="diamonds-filter-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
                 </button>
-                <div id="diamondsFilterColor" class="collapse diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
+                <div id="diamondsFilterColor" class="collapse diamonds-filter-collapse {{ !empty($activeColorIds) ? 'show' : '' }}" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
-                        <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['color_id' => null])) }}" class="{{ empty($activeColorId) ? 'is-active' : '' }}"><span>All Colors</span></a></li>
                         @foreach ($colors as $color)
-                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['color_id' => $color->id])) }}" class="{{ (string) $activeColorId === (string) $color->id ? 'is-active' : '' }}"><span>{{ $color->name }}</span></a></li>
+                            <li>
+                                <label class="diamonds-filter-option {{ in_array((string) $color->id, $activeColorIds, true) ? 'is-active' : '' }}">
+                                    <span class="diamonds-shape-item">
+                                        <input type="checkbox" class="diamonds-filter-checkbox" name="color_ids[]" value="{{ $color->id }}" {{ in_array((string) $color->id, $activeColorIds, true) ? 'checked' : '' }}>
+                                        <span>{{ $color->name }}</span>
+                                    </span>
+                                </label>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
 
             <div class="diamonds-filter-group">
-                <button class="diamonds-filter-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterCut" aria-expanded="false" aria-controls="diamondsFilterCut">
+                <button class="diamonds-filter-toggle {{ empty($activeCutIds) ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterCut" aria-expanded="{{ !empty($activeCutIds) ? 'true' : 'false' }}" aria-controls="diamondsFilterCut">
                     <span class="diamonds-filter-group-title">Cut</span>
                     <span class="diamonds-filter-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
                 </button>
-                <div id="diamondsFilterCut" class="collapse diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
+                <div id="diamondsFilterCut" class="collapse diamonds-filter-collapse {{ !empty($activeCutIds) ? 'show' : '' }}" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
-                        <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['cut_id' => null])) }}" class="{{ empty($activeCutId) ? 'is-active' : '' }}"><span>All Cuts</span></a></li>
                         @foreach ($cuts as $cut)
-                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['cut_id' => $cut->id])) }}" class="{{ (string) $activeCutId === (string) $cut->id ? 'is-active' : '' }}"><span>{{ $cut->name }}</span></a></li>
+                            <li>
+                                <label class="diamonds-filter-option {{ in_array((string) $cut->id, $activeCutIds, true) ? 'is-active' : '' }}">
+                                    <span class="diamonds-shape-item">
+                                        <input type="checkbox" class="diamonds-filter-checkbox" name="cut_ids[]" value="{{ $cut->id }}" {{ in_array((string) $cut->id, $activeCutIds, true) ? 'checked' : '' }}>
+                                        <span>{{ $cut->name }}</span>
+                                    </span>
+                                </label>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
 
             <div class="diamonds-filter-group">
-                <button class="diamonds-filter-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterClarity" aria-expanded="false" aria-controls="diamondsFilterClarity">
+                <button class="diamonds-filter-toggle {{ empty($activeClarityIds) ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterClarity" aria-expanded="{{ !empty($activeClarityIds) ? 'true' : 'false' }}" aria-controls="diamondsFilterClarity">
                     <span class="diamonds-filter-group-title">Clarity</span>
                     <span class="diamonds-filter-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
                 </button>
-                <div id="diamondsFilterClarity" class="collapse diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
+                <div id="diamondsFilterClarity" class="collapse diamonds-filter-collapse {{ !empty($activeClarityIds) ? 'show' : '' }}" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
-                        <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['clarity_id' => null])) }}" class="{{ empty($activeClarityId) ? 'is-active' : '' }}"><span>All Clarity</span></a></li>
                         @foreach ($clarities as $clarity)
-                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['clarity_id' => $clarity->id])) }}" class="{{ (string) $activeClarityId === (string) $clarity->id ? 'is-active' : '' }}"><span>{{ $clarity->name }}</span></a></li>
+                            <li>
+                                <label class="diamonds-filter-option {{ in_array((string) $clarity->id, $activeClarityIds, true) ? 'is-active' : '' }}">
+                                    <span class="diamonds-shape-item">
+                                        <input type="checkbox" class="diamonds-filter-checkbox" name="clarity_ids[]" value="{{ $clarity->id }}" {{ in_array((string) $clarity->id, $activeClarityIds, true) ? 'checked' : '' }}>
+                                        <span>{{ $clarity->name }}</span>
+                                    </span>
+                                </label>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
             </div>
         </div>
+        </form>
     </div>
 
     <div class="diamonds-sidebar-card diamonds-sidebar-card--hint">

@@ -4,18 +4,17 @@
             <div class="row g-4 align-items-stretch">
                 <div class="col-lg-8">
                     <div class="contact-map-frame-wrap h-100">
-                        {{-- Replace src with your Google Maps iframe URL --}}
                         <iframe
                             class="contact-map-frame"
-                            src="https://www.google.com/maps?q=Ratnavriksha,Surat,Gujarat,India&output=embed"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d33035.76853795265!2d81.5978853743164!3d21.2724059!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a28e728a51b7065%3A0xbeebb3dd7e67c94d!2sSamrajya%20Residency!5e1!3m2!1sen!2sin!4v1780383471113!5m2!1sen!2sin"
                             loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"
                             allowfullscreen
-                            title="Ratnavriksha location map"
+                            title="Ratnavriksha location map - Samrajya Residency"
                         ></iframe>
                         <div class="contact-map-pin">
                             <i class="fa-solid fa-location-dot"></i>
-                            <span>Ratnavriksha, Surat, Gujarat, India</span>
+                            <span>Samrajya Residency, Near Paradise Hotel, Raipur</span>
                         </div>
                     </div>
                 </div>
@@ -44,8 +43,7 @@
 
                         <a href="tel:+919876543210" class="contact-business-call">
                             <div>
-                                <p>Need Immediate Assistance?</p>
-                                <span>Call us at +91 98765 43210</span>
+                                <p>Need Immediate Assistance?</p> +91 7900521005</span>
                             </div>
                             <i class="fa-solid fa-phone"></i>
                         </a>

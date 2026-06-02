@@ -7,6 +7,11 @@
 @endpush
 
 @section('content')
+    @php
+        $activeCategoryIds = collect($activeCategoryIds ?? []);
+        $activeShapeIds = collect($activeShapeIds ?? []);
+    @endphp
+
     @include('frontend.component.page-breadcrumb')
 
     <section class="diamonds-listing py-5">
@@ -20,11 +25,11 @@
                             'cuts' => $cuts,
                             'clarities' => $clarities,
                             'categories' => $categories,
-                            'activeShapeId' => $activeShapeId,
-                            'activeColorId' => $activeColorId,
-                            'activeCutId' => $activeCutId,
-                            'activeClarityId' => $activeClarityId,
-                            'activeCategoryId' => $activeCategoryId,
+                            'activeShapeIds' => $activeShapeIds,
+                            'activeColorIds' => $activeColorIds ?? [],
+                            'activeCutIds' => $activeCutIds ?? [],
+                            'activeClarityIds' => $activeClarityIds ?? [],
+                            'activeCategoryIds' => $activeCategoryIds,
                             'filterRoute' => $filterRoute ?? 'diamonds',
                             'hideCategoryFilter' => $hideCategoryFilter ?? false,
                         ])
@@ -34,10 +39,10 @@
                 <div class="{{ ($hideSidebar ?? false) ? 'col-12' : 'col-lg-8' }}">
                     <div class="diamonds-toolbar">
                         <h2 class="diamonds-title font-pilo">
-                            @if(!empty($activeCategoryId))
-                                {{ $categories->firstWhere('id', $activeCategoryId)->name ?? $defaultListTitle }}
-                            @elseif(!empty($activeShapeId))
-                                {{ $shapes->firstWhere('id', $activeShapeId)->name ?? $defaultListTitle }}
+                            @if($activeCategoryIds->count() === 1)
+                                {{ $categories->firstWhere('id', (int) $activeCategoryIds->first())->name ?? $defaultListTitle }}
+                            @elseif($activeShapeIds->count() === 1)
+                                {{ $shapes->firstWhere('id', (int) $activeShapeIds->first())->name ?? $defaultListTitle }}
                             @else
                                 {{ $defaultListTitle }}
                             @endif

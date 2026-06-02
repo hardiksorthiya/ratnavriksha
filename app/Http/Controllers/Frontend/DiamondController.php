@@ -12,17 +12,38 @@ use App\Models\Product;
 use App\Models\Shape;
 use App\Support\ProductMedia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\View\View;
 
 class DiamondController extends Controller
 {
     public function index(Request $request): View
     {
-        $shapeId = $request->query('shape_id');
-        $colorId = $request->query('color_id');
-        $cutId = $request->query('cut_id');
-        $clarityId = $request->query('clarity_id');
-        $categoryId = $request->query('category_id');
+        $shapeIds = collect(Arr::wrap($request->query('shape_ids', $request->query('shape_id'))))
+            ->filter()
+            ->map(fn ($id) => (int) $id)
+            ->unique()
+            ->values();
+        $colorIds = collect(Arr::wrap($request->query('color_ids', $request->query('color_id'))))
+            ->filter()
+            ->map(fn ($id) => (int) $id)
+            ->unique()
+            ->values();
+        $cutIds = collect(Arr::wrap($request->query('cut_ids', $request->query('cut_id'))))
+            ->filter()
+            ->map(fn ($id) => (int) $id)
+            ->unique()
+            ->values();
+        $clarityIds = collect(Arr::wrap($request->query('clarity_ids', $request->query('clarity_id'))))
+            ->filter()
+            ->map(fn ($id) => (int) $id)
+            ->unique()
+            ->values();
+        $categoryIds = collect(Arr::wrap($request->query('category_ids', $request->query('category_id'))))
+            ->filter()
+            ->map(fn ($id) => (int) $id)
+            ->unique()
+            ->values();
 
         $shapes = Shape::query()
             ->where('status', 'active')
@@ -37,21 +58,21 @@ class DiamondController extends Controller
             ->where('status', 'active')
             ->with(['shape', 'color', 'clarity', 'cut', 'categories', 'media']);
 
-        if (!empty($shapeId)) {
-            $productsQuery->where('shape_id', $shapeId);
+        if ($shapeIds->isNotEmpty()) {
+            $productsQuery->whereIn('shape_id', $shapeIds);
         }
-        if (!empty($colorId)) {
-            $productsQuery->where('color_id', $colorId);
+        if ($colorIds->isNotEmpty()) {
+            $productsQuery->whereIn('color_id', $colorIds);
         }
-        if (!empty($cutId)) {
-            $productsQuery->where('cut_id', $cutId);
+        if ($cutIds->isNotEmpty()) {
+            $productsQuery->whereIn('cut_id', $cutIds);
         }
-        if (!empty($clarityId)) {
-            $productsQuery->where('clarity_id', $clarityId);
+        if ($clarityIds->isNotEmpty()) {
+            $productsQuery->whereIn('clarity_id', $clarityIds);
         }
-        if (! empty($categoryId)) {
-            $productsQuery->whereHas('categories', function ($query) use ($categoryId) {
-                $query->where('categories.id', $categoryId);
+        if ($categoryIds->isNotEmpty()) {
+            $productsQuery->whereHas('categories', function ($query) use ($categoryIds) {
+                $query->whereIn('categories.id', $categoryIds);
             });
         }
 
@@ -75,11 +96,11 @@ class DiamondController extends Controller
                 ->whereHas('products', fn ($query) => $query->where('status', 'active'))
                 ->orderBy('name')
                 ->get(),
-            'activeShapeId' => $shapeId,
-            'activeColorId' => $colorId,
-            'activeCutId' => $cutId,
-            'activeClarityId' => $clarityId,
-            'activeCategoryId' => $categoryId,
+            'activeShapeIds' => $shapeIds->all(),
+            'activeColorIds' => $colorIds->all(),
+            'activeCutIds' => $cutIds->all(),
+            'activeClarityIds' => $clarityIds->all(),
+            'activeCategoryIds' => $categoryIds->all(),
             'filterRoute' => 'diamonds',
             'hideCategoryFilter' => false,
             'hideSidebar' => false,
