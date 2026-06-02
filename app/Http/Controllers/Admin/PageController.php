@@ -40,9 +40,7 @@ class PageController extends Controller
         if ($request->boolean('remove_bg_image')) {
             $this->deleteImage($page->bg_image);
             $validated['bg_image'] = null;
-        }
-
-        if ($request->hasFile('bg_image')) {
+        } elseif ($request->hasFile('bg_image')) {
             $this->deleteImage($page->bg_image);
             $validated['bg_image'] = $request->file('bg_image')->store('pages', 'public');
         } else {

@@ -1,9 +1,22 @@
 @media (min-width: 992px) {
-    .hp-header .navbar-collapse {
-        display: flex !important;
-        align-items: center;
-                justify-content: space-between;
-        flex: 1;
+    .hp-header-inner {
+        min-height: 78px;
+    }
+
+    .hp-brand {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+    }
+
+    .hp-navbar-desktop {
+        width: 100%;
+    }
+
+    .hp-menu-group {
+        gap: clamp(20px, 3vw, 48px);
     }
 
     .hero-title {
@@ -11,13 +24,36 @@
     }
 
     .footer-brand {
-        font-size: 12rem;
+        font-size: 8rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hp-menu-group {
+        gap: 60px;
+    }
+}
+
+@media (min-width: 992px) {
+    .hp-mobile-nav {
+        display: none !important;
+        visibility: hidden !important;
     }
 }
 
 @media (max-width: 991.98px) {
     .footer-brand {
         font-size: clamp(3.5rem, 14vw, 8rem);
+    }
+
+    img.hero-slider-bg-three {
+        
+        left: 50%;
+    }
+
+    /* Force mobile layout (desktop nav is hidden by bootstrap, but keep this safe) */
+    .hp-navbar-desktop {
+        display: none !important;
     }
 
     .service-card {
@@ -91,34 +127,26 @@
     }
 
     .hp-header-inner {
-        min-height: 64px;
+        min-height: 72px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .hp-toggler {
+        order: 1;
+        margin-right: auto;
     }
 
     .hp-brand {
-        margin: 10px 0 10px 24px;
-    }
-
-    .hp-menu-group {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-    }
-
-    .hp-menu-group .nav-link {
-        padding: 8px 0;
-    }
-
-    .hp-header .navbar-collapse {
-        background: var(--sorath-background-color);
-        padding: 14px 0 8px;
-    }
-
-    .hp-header.hp-header--sticky .navbar-collapse {
-        background: var(--primary-sorath-color);
-    }
-
-    .hp-contact-btn {
+        order: 2;
         margin-left: auto;
+        margin-right: 0;
+        max-width: 120px;
+    }
+
+    .hp-brand-logo {
+        max-width: 120px;
+        max-height: 56px;
     }
 
     .hero-slide {
@@ -126,21 +154,52 @@
         padding-bottom: 80px;
     }
 
+    .hero-slide .row {
+        text-align: center;
+    }
+
+    .hero-slide .col-md-6 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-slide .col-md-6 .d-flex.flex-column {
+        align-items: center !important;
+        width: 100%;
+    }
+
     .hero-slide-top {
         flex-direction: column;
         gap: 14px;
     }
 
+    .hero-subtitle {
+        text-align: center;
+    }
+
     .hero-title {
         font-size: 42px;
         max-width: 100%;
+        text-align: center;
     }
 
     .hero-description {
         font-size: 16px;
-        text-align: left;
+        text-align: center;
         max-width: 100%;
         margin-top: 0;
+    }
+
+    .hero-slide-btn {
+        align-self: center;
+    }
+
+    .hero-slide-image-wrap {
+        width: 100%;
+        max-width: 420px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .hero-slide-image {
@@ -361,6 +420,30 @@
 }
 
 @media (max-width: 767.98px) {
+    .footer-section .row.align-items-center > [class*="col-"] {
+        text-align: center !important;
+        justify-content: center !important;
+    }
+
+    .footer-logo {
+        display: flex;
+        justify-content: center;
+    }
+
+    .footer-description {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    .footer-small-image {
+        margin: 18px auto 8px;
+    }
+
+    .footer-touch {
+        margin: 8px auto 0;
+    }
+
     .footer-copyright {
         text-align: center;
     }
@@ -368,6 +451,14 @@
     .footer-social-links {
         justify-content: center;
         margin-top: 4px;
+    }
+
+
+    /* Mobile: make services stack in one column (5 items vertically) */
+    .service-section .service-item.row-cols-2 > *,
+    .service-section .service-item.row-cols-sm-3 > * {
+        width: 100% !important;
+        flex: 0 0 auto !important;
     }
 }
 
@@ -391,6 +482,9 @@
     .footer-brand {
         font-size: clamp(2rem, 12vw, 4rem);
     }
+    .about-left-section.position-relative {
+        margin-top: 40px;
+    }
 
     .service-item {
         --bs-gutter-x: 1rem;
@@ -405,7 +499,7 @@
 
     .service-card-content {
         padding: 26px 12px 18px;
-        gap: 10px;
+        gap: 1px;
     }
 
     .service-card-title {
@@ -419,6 +513,11 @@
 
     .hero-title {
         font-size: 34px;
+        text-align: center;
+    }
+
+    .hero-description {
+        text-align: center;
     }
 
     .hero-slide-image {

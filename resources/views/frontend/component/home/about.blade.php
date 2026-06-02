@@ -6,7 +6,7 @@
                     <div class="about-description d-flex flex-column gap-3">
                         <p class="pt-3">At Ratnavriksha Gems, every diamond represents a commitment to excellence,
                             authenticity, and enduring value. Built on a foundation of trust and expertise, we
-                            specialize in sourcing and delivering premium natural and lab-grown diamonds that meet the
+                            specialize in sourcing and delivering premium natural diamonds that meet the
                             highest standards of quality and craftsmanship.
                         </p>
                         <p class="pt-3">

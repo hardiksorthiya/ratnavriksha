@@ -124,25 +124,56 @@ svg {
     flex-shrink: 0;
 }
 
+.hp-header .navbar {
+    width: 100%;
+}
+
 .hp-header-inner {
+    position: relative;
     min-height: 78px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
+    width: 100%;
 }
 
 .hp-brand {
-    margin: 5px 80px;
+    margin: 0;
     padding: 0;
     line-height: 1;
-        width: 140px;
+    width: auto;
+    max-width: 140px;
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.hp-brand-logo {
+    width: auto;
+    max-width: 140px;
+    max-height: 56px;
+    height: auto;
+    display: block;
+}
+
+/* .hp-header-inner {
+    padding-left: 0;
+    padding-right: 0;
+} */
+
+.hp-navbar-desktop {
+    flex: 1;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    min-width: 0;
 }
 
 .hp-menu-group {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 36px;
+    flex-wrap: wrap;
 }
 
 .hp-menu-group .nav-link {
@@ -182,11 +213,110 @@ svg {
 }
 
 .hp-toggler {
+    flex-shrink: 0;
+    padding: 6px 10px;
     border-color: rgba(255, 255, 255, 0.6);
 }
 
 .hp-toggler .navbar-toggler-icon {
     filter: invert(1);
+}
+
+.hp-toggler:focus {
+    box-shadow: 0 0 0 2px rgba(149, 85, 73, 0.45);
+}
+
+/* Mobile slide-in menu (rendered outside .hp-header to avoid transform clipping) */
+.hp-mobile-nav {
+    --bs-offcanvas-zindex: 1060;
+    --bs-offcanvas-width: min(320px, 88vw);
+    --bs-offcanvas-height: 100vh;
+    --bs-offcanvas-color: var(--sorath-white-color);
+    --bs-offcanvas-bg: var(--sorath-background-color);
+    width: var(--bs-offcanvas-width);
+    background-color: var(--sorath-background-color) !important;
+    border-right: 1px solid rgba(149, 85, 73, 0.35);
+    color: var(--sorath-white-color);
+    top: 0;
+    height: 100vh;
+}
+
+.hp-mobile-nav .offcanvas-body {
+    height: 100%;
+    max-height: 100%;
+}
+
+.hp-mobile-nav .btn-close {
+    --bs-btn-close-color: #fff;
+    --bs-btn-close-opacity: 0.9;
+    --bs-btn-close-hover-opacity: 1;
+    --bs-btn-close-focus-shadow: 0 0 0 0.25rem rgba(149, 85, 73, 0.45);
+}
+
+.hp-mobile-nav .offcanvas-header {
+    display: flex;
+}
+
+.hp-mobile-nav .offcanvas-body {
+    display: flex !important;
+    flex-direction: column;
+    padding: 8px 20px 28px;
+    overflow-y: auto;
+    visibility: visible;
+    opacity: 1;
+}
+
+.hp-mobile-nav-header {
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hp-mobile-nav-label {
+    font-family: var(--font-family-philo-sorath);
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.04em;
+}
+
+.hp-mobile-menu {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+    list-style: none;
+}
+
+.hp-mobile-menu .nav-item {
+    width: 100%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hp-mobile-menu .nav-link {
+    display: block;
+    width: 100%;
+    padding: 14px 4px;
+    font-size: 15px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+
+.hp-mobile-menu .nav-link:hover,
+.hp-mobile-menu .nav-link.active {
+    color: var(--hover-sorath-color) !important;
+}
+
+.hp-mobile-menu-contact {
+    margin-top: 20px;
+    border-bottom: none !important;
+    padding-top: 8px;
+}
+
+.hp-mobile-menu-contact .hp-contact-btn {
+    display: inline-flex;
+    justify-content: center;
 }
 
 
@@ -216,9 +346,22 @@ svg {
     margin-bottom: 18px;
 }
 
+.hero-subtitle {
+    margin: 0 0 10px;
+    color: var(--primary-sorath-color, #955549);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
 .hero-title {
     color: var(--sorath-white-color);
     font-family: var(--font-family-philo-sorath);
+}
+
+.hero-slide-btn {
+    align-self: flex-start;
 }
 
 .hero-description {
@@ -306,7 +449,7 @@ img.hero-slider-bg-three {
     filter: grayscale(1);
     transform: rotate(15deg);
     top: 60%;
-    left: 80%;
+    left: 70%;
     animation: rotate 10s linear infinite;
 }
 

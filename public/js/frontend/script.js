@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
         currentPath = currentPath.slice(0, -1);
     }
 
-    var navLinks = document.querySelectorAll('.hp-header .nav-link, .hp-header .hp-contact-btn');
+    var navLinks = document.querySelectorAll(
+        '.hp-header .nav-link, .hp-header .hp-contact-btn, .hp-mobile-menu .nav-link, .hp-mobile-menu .hp-contact-btn'
+    );
 
     navLinks.forEach(function (link) {
         var linkPath = normalizePath(link.getAttribute('href'));
@@ -72,6 +74,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 item.classList.remove('active');
             });
             link.classList.add('active');
+
+            var mobileNav = document.getElementById('hpMobileNav');
+            if (mobileNav && window.bootstrap && window.bootstrap.Offcanvas) {
+                var instance = window.bootstrap.Offcanvas.getInstance(mobileNav);
+                if (instance) {
+                    instance.hide();
+                }
+            }
         });
     });
 

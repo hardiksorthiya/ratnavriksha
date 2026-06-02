@@ -23,7 +23,7 @@
                     </div>
                     <h3 class="about-mission-card-title font-pilo">Our Mission</h3>
                     <div class="about-mission-card-line" aria-hidden="true"></div>
-                    <p class="about-mission-card-text">To provide exceptional natural and lab-grown diamonds through uncompromising quality, ethical sourcing, and personalized service. We are committed to helping our clients grow their businesses by delivering diamonds that embody brilliance, authenticity, and lasting value.</p>
+                    <p class="about-mission-card-text">To provide exceptional natural diamonds through uncompromising quality, ethical sourcing, and personalized service. We are committed to helping our clients grow their businesses by delivering diamonds that embody brilliance, authenticity, and lasting value.</p>
                 </div>
             </div>
 

@@ -111,12 +111,12 @@ class SliderController extends Controller
 
     private function handleImageUpdate(Request $request, Slider $slider, array &$validated, string $field, string $removeField): void
     {
-        if ($request->boolean($removeField)) {
+        $shouldRemove = $request->boolean($removeField);
+
+        if ($shouldRemove) {
             $this->deleteStoredImage($slider->{$field});
             $validated[$field] = null;
-        }
-
-        if ($request->hasFile($field)) {
+        } elseif ($request->hasFile($field)) {
             $this->deleteStoredImage($slider->{$field});
             $validated[$field] = $request->file($field)->store('sliders', 'public');
         } else {

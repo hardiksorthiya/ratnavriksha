@@ -4,7 +4,7 @@
             <div class="col-md-4">
                 <div class="vision-item">
                     <h2>Our Vision</h2>
-                    <p>To provide exceptional natural and lab-grown diamonds through uncompromising quality, ethical
+                    <p>To provide exceptional natural diamonds through uncompromising quality, ethical
                         sourcing, and personalized service. We are committed to helping our clients grow their
                         businesses by delivering diamonds that embody brilliance, authenticity, and lasting value.</p>
                 </div>

@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\EnquiryController;
 use App\Http\Controllers\Frontend\DiamondController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\JewelleryController;
 use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\Frontend\PageController as FrontendPageController;
@@ -55,9 +56,7 @@ Route::middleware('auth')->group(function () {
 
 
 // frontend routes
-Route::get('/', function () {
-    return view('frontend.pages.home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/product/{slug}', [FrontendProductController::class, 'show'])->name('product.show');
 Route::post('/product-enquiry', [EnquiryController::class, 'store'])->name('product.enquiry.store');

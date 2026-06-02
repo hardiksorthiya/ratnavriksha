@@ -24,6 +24,7 @@
 </head>
 <body>
     @include('frontend.layout.header')
+    @include('frontend.layout.mobile-nav')
 
     @yield('content')
 

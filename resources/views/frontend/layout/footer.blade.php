@@ -6,7 +6,7 @@
                     <img src="{{ asset('images/logo.png') }}" alt="Ratnavriksha" class="img-fluid">
                 </div>
                 <p class="footer-description">Ratnavriksha Gems is a trusted name in the diamond industry, dedicated to
-                    delivering exceptional natural and lab-grown diamonds with uncompromising quality, ethical sourcing,
+                    delivering exceptional natural diamonds with uncompromising quality, ethical sourcing,
                     and complete transparency. </p>
             </div>
 

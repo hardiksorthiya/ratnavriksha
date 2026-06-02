@@ -17,4 +17,21 @@ class Slider extends Model
         'mobile_image',
         'status',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where(function ($query) {
+            $query->where('status', 'active')
+                ->orWhereNull('status');
+        });
+    }
+
+    public function storageUrl(?string $path): ?string
+    {
+        if (! $path) {
+            return null;
+        }
+
+        return asset('storage/'.$path);
+    }
 }
