@@ -93,7 +93,7 @@
 
                     @if ($products->hasPages())
                         <div class="diamonds-pagination">
-                            {{ $products->links() }}
+                            {{ $products->links('vendor.pagination.catalog') }}
                         </div>
                     @endif
                 </div>

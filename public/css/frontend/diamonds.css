@@ -418,7 +418,71 @@
 }
 
 .diamonds-pagination {
-    margin-top: 22px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.diamonds-pagination .catalog-pagination-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.diamonds-pagination .catalog-pagination-summary {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.diamonds-pagination .catalog-pagination-list {
+    gap: 8px;
+}
+
+.diamonds-pagination .catalog-pagination-list .page-item {
+    margin: 0;
+}
+
+.diamonds-pagination .catalog-pagination-list .page-link {
+    min-width: 42px;
+    height: 42px;
+    padding: 0 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    box-shadow: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.diamonds-pagination .catalog-pagination-list .page-link:hover {
+    background: rgba(149, 85, 73, 0.18);
+    border-color: rgba(149, 85, 73, 0.65);
+    color: #fff;
+}
+
+.diamonds-pagination .catalog-pagination-list .page-item.active .page-link {
+    background: var(--primary-sorath-color, #955549);
+    border-color: var(--primary-sorath-color, #955549);
+    color: #fff;
+    z-index: 1;
+}
+
+.diamonds-pagination .catalog-pagination-list .page-item.disabled .page-link {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.35);
+    opacity: 1;
+    pointer-events: none;
 }
 
 @media (max-width: 991.98px) {
