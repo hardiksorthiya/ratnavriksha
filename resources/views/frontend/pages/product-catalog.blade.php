@@ -91,7 +91,7 @@
                         @endforelse
                     </div>
 
-                    @if ($products->hasPages())
+                    @if ($products->hasPages() || $products->total() > 0)
                         <div class="diamonds-pagination">
                             {{ $products->links('vendor.pagination.catalog') }}
                         </div>
