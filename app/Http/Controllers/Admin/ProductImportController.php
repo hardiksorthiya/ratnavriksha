@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Clarity;
 use App\Models\Color;
 use App\Models\Cut;
@@ -22,6 +23,9 @@ class ProductImportController extends Controller
         'color',
         'clarity',
         'cut',
+        'categories',
+        'diamond_carat_size',
+        'diamond_carat_weight',
         'row_weight',
         'polish_weight',
         'length',
@@ -29,6 +33,9 @@ class ProductImportController extends Controller
         'table_percent',
         'total_depth',
         'ratio',
+        'gold_karat',
+        'gold_weight',
+        'gold_hallmarked',
         'remarks',
         'short_description',
         'long_description',
@@ -46,6 +53,34 @@ class ProductImportController extends Controller
         return view('backend.pages.products.import');
     }
 
+    public function export()
+    {
+        $products = Product::with(['shape', 'color', 'clarity', 'cut', 'categories', 'media'])
+            ->orderBy('id')
+            ->get();
+
+        $filename = 'products-export-'.now()->format('Y-m-d-His').'.csv';
+
+        $callback = function () use ($products) {
+            $handle = fopen('php://output', 'w');
+
+            // UTF-8 BOM so Excel opens special characters correctly
+            fwrite($handle, "\xEF\xBB\xBF");
+
+            fputcsv($handle, self::TEMPLATE_HEADERS);
+
+            foreach ($products as $product) {
+                fputcsv($handle, $this->productToExportRow($product));
+            }
+
+            fclose($handle);
+        };
+
+        return response()->streamDownload($callback, $filename, [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+        ]);
+    }
+
     public function downloadTemplate()
     {
         $sample = [
@@ -56,6 +91,9 @@ class ProductImportController extends Controller
             'D',
             'VS1',
             'Excellent',
+            'Engagement|Loose',
+            '1.02',
+            '1.00 ct',
             '1.02',
             '1.00',
             '6.45',
@@ -63,6 +101,9 @@ class ProductImportController extends Controller
             '58',
             '61.2',
             '1.00',
+            '22',
+            '4.5 g',
+            'yes',
             'Sample remarks',
             '<p>Short <strong>HTML</strong> summary.</p>',
             '<h2>Product Details</h2><p>Long description with <em>HTML</em> formatting.</p><ul><li>Point one</li><li>Point two</li></ul>',
@@ -77,13 +118,14 @@ class ProductImportController extends Controller
 
         $callback = function () use ($sample) {
             $handle = fopen('php://output', 'w');
+            fwrite($handle, "\xEF\xBB\xBF");
             fputcsv($handle, self::TEMPLATE_HEADERS);
             fputcsv($handle, $sample);
             fclose($handle);
         };
 
         return response()->streamDownload($callback, 'product-import-template.csv', [
-            'Content-Type' => 'text/csv',
+            'Content-Type' => 'text/csv; charset=UTF-8',
         ]);
     }
 
@@ -196,6 +238,7 @@ class ProductImportController extends Controller
             'colors' => $mapByName(Color::orderBy('name')->get()),
             'clarities' => $mapByName(Clarity::orderBy('name')->get()),
             'cuts' => $mapByName(Cut::orderBy('name')->get()),
+            'categories' => $mapByName(Category::orderBy('name')->get()),
         ];
     }
 
@@ -215,13 +258,6 @@ class ProductImportController extends Controller
             'color_id' => $this->resolveLookupId($data['color'] ?? '', $lookups['colors'], 'color'),
             'clarity_id' => $this->resolveLookupId($data['clarity'] ?? '', $lookups['clarities'], 'clarity'),
             'cut_id' => $this->resolveLookupId($data['cut'] ?? '', $lookups['cuts'], 'cut'),
-            'row_weight' => $this->nullable($data['row_weight'] ?? ''),
-            'polish_weight' => $this->nullable($data['polish_weight'] ?? ''),
-            'length' => $this->nullable($data['length'] ?? ''),
-            'width' => $this->nullable($data['width'] ?? ''),
-            'table_percent' => $this->nullable($data['table_percent'] ?? ''),
-            'total_depth' => $this->nullable($data['total_depth'] ?? ''),
-            'ratio' => $this->nullable($data['ratio'] ?? ''),
             'remarks' => $this->nullable($data['remarks'] ?? ''),
             'short_description' => $this->nullable($data['short_description'] ?? ''),
             'long_description' => $this->nullable($data['long_description'] ?? ''),
@@ -230,6 +266,8 @@ class ProductImportController extends Controller
             'meta_keywords' => $this->nullable($data['meta_keywords'] ?? ''),
             'status' => $this->resolveStatus($data['status'] ?? ''),
         ];
+
+        $productData = $this->mergeOptionalImportFields($productData, $data);
 
         $slugInput = $data['slug'] ?? '';
         $productData['slug'] = $this->resolveUniqueSlug(
@@ -265,6 +303,12 @@ class ProductImportController extends Controller
             $action = 'created';
         }
 
+        if (array_key_exists('categories', $data)) {
+            $product->categories()->sync(
+                $this->resolveCategoryIds($data['categories'], $lookups['categories'])
+            );
+        }
+
         $gallery = $data['gallery'] ?? '';
 
         if ($gallery !== '' && $action === 'created') {
@@ -272,6 +316,34 @@ class ProductImportController extends Controller
         }
 
         return $action;
+    }
+
+    private function resolveCategoryIds(string $value, array $lookup): array
+    {
+        if ($value === '') {
+            return [];
+        }
+
+        $names = preg_split('/[|,;]/', $value) ?: [];
+        $ids = [];
+
+        foreach ($names as $name) {
+            $name = trim($name);
+
+            if ($name === '') {
+                continue;
+            }
+
+            $key = strtolower($name);
+
+            if (! isset($lookup[$key])) {
+                throw new \InvalidArgumentException('Unknown category: "'.$name.'".');
+            }
+
+            $ids[] = $lookup[$key];
+        }
+
+        return array_values(array_unique($ids));
     }
 
     private function resolveLookupId(string $value, array $lookup, string $label): ?int
@@ -360,5 +432,84 @@ class ProductImportController extends Controller
     private function nullable(string $value): ?string
     {
         return $value !== '' ? $value : null;
+    }
+
+    private function resolveGoldHallmarked(string $value): bool
+    {
+        $value = strtolower(trim($value));
+
+        return in_array($value, ['1', 'yes', 'true', 'y'], true);
+    }
+
+    private function mergeOptionalImportFields(array $productData, array $data): array
+    {
+        $nullableStringFields = [
+            'diamond_carat_size',
+            'diamond_carat_weight',
+            'row_weight',
+            'polish_weight',
+            'length',
+            'width',
+            'table_percent',
+            'total_depth',
+            'ratio',
+            'gold_karat',
+            'gold_weight',
+        ];
+
+        foreach ($nullableStringFields as $field) {
+            if (array_key_exists($field, $data)) {
+                $productData[$field] = $this->nullable($data[$field]);
+            }
+        }
+
+        if (array_key_exists('gold_hallmarked', $data)) {
+            $productData['gold_hallmarked'] = $this->resolveGoldHallmarked($data['gold_hallmarked']);
+        }
+
+        return $productData;
+    }
+
+    private function productToExportRow(Product $product): array
+    {
+        return [
+            $product->name ?? '',
+            $product->stone_id ?? '',
+            $product->slug ?? '',
+            $product->shape?->name ?? '',
+            $product->color?->name ?? '',
+            $product->clarity?->name ?? '',
+            $product->cut?->name ?? '',
+            $product->categories->pluck('name')->filter()->implode('|'),
+            $product->diamond_carat_size ?? '',
+            $product->diamond_carat_weight ?? '',
+            $product->row_weight ?? '',
+            $product->polish_weight ?? '',
+            $product->length ?? '',
+            $product->width ?? '',
+            $product->table_percent ?? '',
+            $product->total_depth ?? '',
+            $product->ratio ?? '',
+            $product->gold_karat ?? '',
+            $product->gold_weight ?? '',
+            $product->gold_hallmarked ? 'yes' : 'no',
+            $product->remarks ?? '',
+            $product->short_description ?? '',
+            $product->long_description ?? '',
+            $product->meta_title ?? '',
+            $product->meta_description ?? '',
+            $product->meta_keywords ?? '',
+            $product->status ?? 'active',
+            $product->featured_type ?? '',
+            $product->featured_path ?? '',
+            $this->formatGalleryForExport($product),
+        ];
+    }
+
+    private function formatGalleryForExport(Product $product): string
+    {
+        return $product->media
+            ->map(fn (ProductMedia $media) => strtolower($media->type).':'.$media->path)
+            ->implode('|');
     }
 }

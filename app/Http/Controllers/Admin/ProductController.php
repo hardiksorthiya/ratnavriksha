@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Clarity;
 use App\Models\Color;
 use App\Models\Cut;
@@ -17,7 +18,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['shape', 'color', 'clarity', 'cut'])->latest()->get();
+        $products = Product::with(['shape', 'color', 'clarity', 'cut', 'categories'])->latest()->get();
 
         return view('backend.pages.products.index', compact('products'));
     }
@@ -33,6 +34,7 @@ class ProductController extends Controller
 
         $product = Product::create($this->prepareProductData($request, $validated));
 
+        $this->syncCategories($request, $product);
         $this->handleFeaturedUpload($request, $product);
         $this->handleGalleryUpload($request, $product);
 
@@ -41,7 +43,7 @@ class ProductController extends Controller
 
     public function edit(string $id)
     {
-        $product = Product::with('media')->findOrFail($id);
+        $product = Product::with(['media', 'categories'])->findOrFail($id);
 
         return view('backend.pages.products.create_edit', array_merge($this->formData(), compact('product')));
     }
@@ -53,6 +55,8 @@ class ProductController extends Controller
         $validated = $this->validateProduct($request, $product->id);
 
         $product->update($this->prepareProductData($request, $validated, $product));
+
+        $this->syncCategories($request, $product);
 
         if ($request->boolean('remove_featured')) {
             $this->deleteStoredFile($product->featured_path);
@@ -88,7 +92,15 @@ class ProductController extends Controller
             'colors' => Color::orderBy('name')->get(),
             'clarities' => Clarity::orderBy('name')->get(),
             'cuts' => Cut::orderBy('name')->get(),
+            'categories' => Category::orderBy('name')->get(),
         ];
+    }
+
+    private function syncCategories(Request $request, Product $product): void
+    {
+        $categoryIds = $request->input('category_ids', []);
+
+        $product->categories()->sync(is_array($categoryIds) ? $categoryIds : []);
     }
 
     private function validateProduct(Request $request, ?int $productId = null): array
@@ -112,6 +124,10 @@ class ProductController extends Controller
             'color_id' => 'nullable|exists:colors,id',
             'clarity_id' => 'nullable|exists:clarities,id',
             'cut_id' => 'nullable|exists:cuts,id',
+            'diamond_carat_size' => 'nullable|string|max:255',
+            'diamond_carat_weight' => 'nullable|string|max:255',
+            'category_ids' => 'nullable|array',
+            'category_ids.*' => 'integer|exists:categories,id',
             'row_weight' => 'nullable|string|max:255',
             'polish_weight' => 'nullable|string|max:255',
             'length' => 'nullable|string|max:255',
@@ -119,6 +135,9 @@ class ProductController extends Controller
             'table_percent' => 'nullable|string|max:255',
             'total_depth' => 'nullable|string|max:255',
             'ratio' => 'nullable|string|max:255',
+            'gold_karat' => 'nullable|numeric',
+            'gold_weight' => 'nullable|string|max:255',
+            'gold_hallmarked' => 'nullable|boolean',
             'remarks' => 'nullable|string',
             'short_description' => 'nullable|string',
             'long_description' => 'nullable|string',
@@ -133,8 +152,9 @@ class ProductController extends Controller
     {
         $fields = [
             'name', 'stone_id', 'shape_id', 'color_id', 'clarity_id', 'cut_id',
+            'diamond_carat_size', 'diamond_carat_weight',
             'row_weight', 'polish_weight', 'length', 'width', 'table_percent',
-            'total_depth', 'ratio', 'remarks', 'short_description', 'long_description',
+            'total_depth', 'ratio', 'gold_karat', 'gold_weight', 'remarks', 'short_description', 'long_description',
             'meta_title', 'meta_description', 'meta_keywords', 'status',
         ];
 
@@ -151,6 +171,8 @@ class ProductController extends Controller
         if (empty($data['status'])) {
             $data['status'] = 'active';
         }
+
+        $data['gold_hallmarked'] = $request->boolean('gold_hallmarked');
 
         return $data;
     }

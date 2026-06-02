@@ -87,7 +87,46 @@
                 <div class="card panel-card mb-4">
                     <div class="card-body">
                         <h5 class="profile-section-title">Attributes</h5>
-                        <p class="profile-section-desc mb-4">Shape, color, clarity and cut</p>
+                        <p class="profile-section-desc mb-4">Shape, color, clarity, cut and categories</p>
+
+                        @php
+                            $selectedCategoryIds = old('category_ids', isset($product) && $product ? $product->categories->pluck('id')->map(fn ($id) => (string) $id)->all() : []);
+                        @endphp
+
+                        <div class="mb-3">
+                            <label class="form-label">Categories</label>
+                            <div class="category-multiselect" data-category-multiselect>
+                                <button type="button"
+                                    class="category-multiselect-toggle form-select text-start d-flex align-items-center justify-content-between"
+                                    data-category-toggle
+                                    aria-haspopup="listbox"
+                                    aria-expanded="false">
+                                    <span class="category-multiselect-label text-truncate" data-category-label>
+                                        @if($categories->isEmpty())
+                                            No categories available
+                                        @else
+                                            Select categories...
+                                        @endif
+                                    </span>
+                                    <i class="bi bi-chevron-down category-multiselect-chevron flex-shrink-0 ms-2" aria-hidden="true"></i>
+                                </button>
+                                <div class="category-multiselect-menu" data-category-menu hidden>
+                                    @forelse($categories as $category)
+                                        <label class="category-multiselect-option">
+                                            <input type="checkbox"
+                                                name="category_ids[]"
+                                                value="{{ $category->id }}"
+                                                data-category-name="{{ $category->name }}"
+                                                {{ in_array((string) $category->id, $selectedCategoryIds, true) ? 'checked' : '' }}>
+                                            <span>{{ $category->name }}</span>
+                                        </label>
+                                    @empty
+                                        <p class="category-multiselect-empty mb-0">No categories yet. <a href="{{ route('categories.create') }}">Add a category</a> first.</p>
+                                    @endforelse
+                                </div>
+                            </div>
+                            <div class="form-text">Open the dropdown and tick one or more categories.</div>
+                        </div>
 
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -192,6 +231,14 @@
 
                         <div class="row g-3">
                             <div class="col-md-4">
+                                <label class="form-label">Diamond Carat Size</label>
+                                <input type="text" name="diamond_carat_size" class="form-control" value="{{ old('diamond_carat_size', optional($product)->diamond_carat_size ?? '') }}" placeholder="e.g. 1.02">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Diamond Carat Weight</label>
+                                <input type="text" name="diamond_carat_weight" class="form-control" value="{{ old('diamond_carat_weight', optional($product)->diamond_carat_weight ?? '') }}" placeholder="e.g. 1.00 ct">
+                            </div>
+                            <div class="col-md-4">
                                 <label class="form-label">Row Weight</label>
                                 <input type="text" name="row_weight" class="form-control" value="{{ old('row_weight', optional($product)->row_weight ?? '') }}">
                             </div>
@@ -218,6 +265,45 @@
                             <div class="col-md-4">
                                 <label class="form-label">Ratio</label>
                                 <input type="text" name="ratio" class="form-control" value="{{ old('ratio', optional($product)->ratio ?? '') }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card panel-card mb-4">
+                    <div class="card-body">
+                        <h5 class="profile-section-title">Gold Measurement</h5>
+                        <p class="profile-section-desc mb-4">Optional gold details (all fields optional)</p>
+
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label class="form-label">Gold Karat</label>
+                                <input type="number"
+                                    name="gold_karat"
+                                    class="form-control"
+                                    value="{{ old('gold_karat', optional($product)->gold_karat ?? '') }}"
+                                    placeholder="e.g. 18, 22"
+                                    min="0"
+                                    step="0.01">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Gold Weight</label>
+                                <input type="text"
+                                    name="gold_weight"
+                                    class="form-control"
+                                    value="{{ old('gold_weight', optional($product)->gold_weight ?? '') }}"
+                                    placeholder="e.g. 4.5 g">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check mt-2 pt-md-4">
+                                    <input type="checkbox"
+                                        name="gold_hallmarked"
+                                        value="1"
+                                        class="form-check-input"
+                                        id="gold_hallmarked"
+                                        {{ old('gold_hallmarked', optional($product)->gold_hallmarked ?? false) ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="gold_hallmarked">Hallmarked</label>
+                                </div>
                             </div>
                         </div>
                     </div>

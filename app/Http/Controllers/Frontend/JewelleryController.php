@@ -10,11 +10,12 @@ use App\Models\Cut;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Shape;
+use App\Support\JewelleryCategory;
 use App\Support\ProductMedia;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class DiamondController extends Controller
+class JewelleryController extends Controller
 {
     public function index(Request $request): View
     {
@@ -30,6 +31,7 @@ class DiamondController extends Controller
             ->get();
         $shapes->transform(function (Shape $shape) {
             $shape->list_image_src = $this->resolveShapeImageSrc($shape);
+
             return $shape;
         });
 
@@ -37,16 +39,18 @@ class DiamondController extends Controller
             ->where('status', 'active')
             ->with(['shape', 'color', 'clarity', 'cut', 'categories', 'media']);
 
-        if (!empty($shapeId)) {
+        JewelleryCategory::scopeProducts($productsQuery);
+
+        if (! empty($shapeId)) {
             $productsQuery->where('shape_id', $shapeId);
         }
-        if (!empty($colorId)) {
+        if (! empty($colorId)) {
             $productsQuery->where('color_id', $colorId);
         }
-        if (!empty($cutId)) {
+        if (! empty($cutId)) {
             $productsQuery->where('cut_id', $cutId);
         }
-        if (!empty($clarityId)) {
+        if (! empty($clarityId)) {
             $productsQuery->where('clarity_id', $clarityId);
         }
         if (! empty($categoryId)) {
@@ -55,24 +59,27 @@ class DiamondController extends Controller
             });
         }
 
-        // Build card media (image/video) from featured first, then media fallback.
         $products = $productsQuery->latest()->paginate(12)->withQueryString();
         $products->getCollection()->transform(function (Product $product) {
             $media = $this->resolveListMedia($product);
             $product->list_media_src = $media['src'];
             $product->list_media_type = $media['type'];
+
             return $product;
         });
 
         return view('frontend.pages.product-catalog', [
-            'page' => Page::where('slug', 'diamonds')->where('status', 'active')->firstOrFail(),
+            'page' => Page::where('slug', 'jewellery')->where('status', 'active')->first()
+                ?? Page::where('slug', 'diamonds')->where('status', 'active')->firstOrFail(),
             'products' => $products,
             'shapes' => $shapes,
             'colors' => Color::query()->orderBy('name')->get(),
             'cuts' => Cut::query()->orderBy('name')->get(),
             'clarities' => Clarity::query()->orderBy('name')->get(),
             'categories' => Category::query()
-                ->whereHas('products', fn ($query) => $query->where('status', 'active'))
+                ->whereHas('products', function ($query) {
+                    JewelleryCategory::scopeProducts($query);
+                })
                 ->orderBy('name')
                 ->get(),
             'activeShapeId' => $shapeId,
@@ -80,11 +87,11 @@ class DiamondController extends Controller
             'activeCutId' => $cutId,
             'activeClarityId' => $clarityId,
             'activeCategoryId' => $categoryId,
-            'filterRoute' => 'diamonds',
+            'filterRoute' => 'jewellery',
             'hideCategoryFilter' => false,
-            'hideSidebar' => false,
-            'catalogLabel' => 'diamonds',
-            'defaultListTitle' => 'All Diamonds',
+            'hideSidebar' => true,
+            'catalogLabel' => 'jewellery',
+            'defaultListTitle' => 'All Jewellery',
         ]);
     }
 
@@ -103,14 +110,6 @@ class DiamondController extends Controller
         ];
     }
 
-    private function srcFromStoragePath(string $path): string
-    {
-        // Convert windows-style slashes to a clean storage URL.
-        $storagePath = '/storage/' . ltrim(str_replace('\\', '/', $path), '/');
-
-        return rtrim(request()->getBaseUrl(), '/') . $storagePath;
-    }
-
     private function resolveShapeImageSrc(Shape $shape): ?string
     {
         if (empty($shape->image)) {
@@ -119,13 +118,10 @@ class DiamondController extends Controller
 
         $normalized = ltrim(str_replace('\\', '/', $shape->image), '/');
 
-        // If admin stored a storage path, use storage URL.
         if (str_starts_with($normalized, 'shapes/') || str_contains($normalized, '/')) {
-            return $this->srcFromStoragePath($normalized);
+            return ProductMedia::srcFromStoragePath($normalized);
         }
 
-        // Otherwise treat it as public image path fallback.
-        return asset('images/home/shapes/' . $normalized);
+        return asset('images/home/shapes/'.$normalized);
     }
 }
-

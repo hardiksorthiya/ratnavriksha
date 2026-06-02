@@ -96,6 +96,8 @@
                                 'Color' => $product->color?->name,
                                 'Clarity' => $product->clarity?->name,
                                 'Cut' => $product->cut?->name,
+                                'Diamond Carat Size' => $product->diamond_carat_size,
+                                'Diamond Carat Weight' => $product->diamond_carat_weight,
                                 'Row Weight' => $product->row_weight,
                                 'Polish Weight' => $product->polish_weight,
                                 'Length' => $product->length,
@@ -103,6 +105,9 @@
                                 'Table' => $product->table_percent,
                                 'TD (Total Depth)' => $product->total_depth,
                                 'Ratio' => $product->ratio,
+                                'Gold Karat' => $product->gold_karat,
+                                'Gold Weight' => $product->gold_weight,
+                                'Hallmarked' => $product->gold_hallmarked ? 'Yes' : null,
                                 'Remarks' => $product->remarks,
                             ], fn ($value) => filled($value));
                         @endphp

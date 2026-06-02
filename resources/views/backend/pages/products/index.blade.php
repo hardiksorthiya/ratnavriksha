@@ -7,11 +7,14 @@
     <div class="dash-card mb-4 d-flex flex-wrap justify-content-between align-items-center gap-3">
         <div>
             <h2 class="dash-title mb-1">Product List</h2>
-            <p class="dash-subtitle mb-0">Manage diamond products</p>
+            <p class="dash-subtitle mb-0">Manage diamond products. Export to Excel (CSV) to bulk-edit diamond, gold &amp; all fields.</p>
         </div>
         <div class="d-flex flex-wrap gap-2">
+            <a href="{{ route('products.export') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-download me-1"></i> Export CSV
+            </a>
             <a href="{{ route('products.import.index') }}" class="btn btn-outline-secondary">
-                <i class="bi bi-file-earmark-spreadsheet me-1"></i> Bulk Upload
+                <i class="bi bi-upload me-1"></i> Bulk Upload
             </a>
             <a href="{{ route('products.create') }}" class="btn btn-gold">
                 <i class="bi bi-plus-lg me-1"></i> Add Product
@@ -34,6 +37,7 @@
                             <th>Name</th>
                             <th>Stone ID</th>
                             <th>Shape</th>
+                            <th>Categories</th>
                             <th>Status</th>
                             <th width="160">Action</th>
                         </tr>
@@ -56,6 +60,13 @@
                                 <td>{{ $product->name ?? '—' }}</td>
                                 <td>{{ $product->stone_id ?? '—' }}</td>
                                 <td>{{ $product->shape?->name ?? '—' }}</td>
+                                <td>
+                                    @if($product->categories->isNotEmpty())
+                                        {{ $product->categories->pluck('name')->join(', ') }}
+                                    @else
+                                        <span class="text-muted-small">—</span>
+                                    @endif
+                                </td>
                                 <td>
                                     @if($product->status === 'active')
                                         <span class="badge badge-active">Active</span>
@@ -87,7 +98,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center py-5 text-muted-small">No products found. <a href="{{ route('products.create') }}" class="auth-link">Add your first product</a></td>
+                                <td colspan="8" class="text-center py-5 text-muted-small">No products found. <a href="{{ route('products.create') }}" class="auth-link">Add your first product</a></td>
                             </tr>
                         @endforelse
                     </tbody>

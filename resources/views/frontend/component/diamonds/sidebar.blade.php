@@ -1,11 +1,13 @@
 @php
     $baseFilters = request()->query();
+    $filterRoute = $filterRoute ?? 'diamonds';
+    $hideCategoryFilter = $hideCategoryFilter ?? false;
 @endphp
 
 <aside class="diamonds-sidebar">
     <div class="diamonds-sidebar-card">
-        <h3 class="diamonds-sidebar-title font-pilo">Categories</h3>
-        <p class="diamonds-sidebar-subtitle">Filter diamonds by shape.</p>
+        <h3 class="diamonds-sidebar-title font-pilo">Filters</h3>
+        <p class="diamonds-sidebar-subtitle">Refine diamonds by category, shape, color, cut and clarity.</p>
 
         <div class="diamonds-filter-accordion" id="diamondsFilterAccordion">
             <div class="diamonds-filter-group">
@@ -16,7 +18,7 @@
                 <div id="diamondsFilterShape" class="collapse show diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list">
                         <li>
-                            <a href="{{ route('diamonds', array_merge($baseFilters, ['shape_id' => null])) }}" class="{{ empty($activeShapeId) ? 'is-active' : '' }}">
+                            <a href="{{ route($filterRoute, array_merge($baseFilters, ['shape_id' => null])) }}" class="{{ empty($activeShapeId) ? 'is-active' : '' }}">
                                 <span class="diamonds-shape-item">
                                     <span class="diamonds-shape-thumb diamonds-shape-thumb--all">
                                         <i class="fa-solid fa-gem" aria-hidden="true"></i>
@@ -27,7 +29,7 @@
                         </li>
                         @foreach ($shapes as $shape)
                             <li>
-                                <a href="{{ route('diamonds', array_merge($baseFilters, ['shape_id' => $shape->id])) }}" class="{{ (string) $activeShapeId === (string) $shape->id ? 'is-active' : '' }}">
+                                <a href="{{ route($filterRoute, array_merge($baseFilters, ['shape_id' => $shape->id])) }}" class="{{ (string) $activeShapeId === (string) $shape->id ? 'is-active' : '' }}">
                                     <span class="diamonds-shape-item">
                                         <span class="diamonds-shape-thumb">
                                             <img src="{{ $shape->list_image_src }}" alt="{{ $shape->name }}" loading="lazy">
@@ -41,6 +43,23 @@
                 </div>
             </div>
 
+            @if(!$hideCategoryFilter && isset($categories) && $categories->isNotEmpty())
+                <div class="diamonds-filter-group">
+                    <button class="diamonds-filter-toggle {{ empty($activeCategoryId) ? 'collapsed' : '' }}" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterCategory" aria-expanded="{{ !empty($activeCategoryId) ? 'true' : 'false' }}" aria-controls="diamondsFilterCategory">
+                        <span class="diamonds-filter-group-title">Category</span>
+                        <span class="diamonds-filter-icon" aria-hidden="true"><i class="fa-solid fa-plus"></i></span>
+                    </button>
+                    <div id="diamondsFilterCategory" class="collapse diamonds-filter-collapse {{ !empty($activeCategoryId) ? 'show' : '' }}" data-bs-parent="#diamondsFilterAccordion">
+                        <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
+                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['category_id' => null])) }}" class="{{ empty($activeCategoryId) ? 'is-active' : '' }}"><span>All Categories</span></a></li>
+                            @foreach ($categories as $category)
+                                <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['category_id' => $category->id])) }}" class="{{ (string) ($activeCategoryId ?? '') === (string) $category->id ? 'is-active' : '' }}"><span>{{ $category->name }}</span></a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            @endif
+
             <div class="diamonds-filter-group">
                 <button class="diamonds-filter-toggle collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#diamondsFilterColor" aria-expanded="false" aria-controls="diamondsFilterColor">
                     <span class="diamonds-filter-group-title">Color</span>
@@ -48,9 +67,9 @@
                 </button>
                 <div id="diamondsFilterColor" class="collapse diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
-                        <li><a href="{{ route('diamonds', array_merge($baseFilters, ['color_id' => null])) }}" class="{{ empty($activeColorId) ? 'is-active' : '' }}"><span>All Colors</span></a></li>
+                        <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['color_id' => null])) }}" class="{{ empty($activeColorId) ? 'is-active' : '' }}"><span>All Colors</span></a></li>
                         @foreach ($colors as $color)
-                            <li><a href="{{ route('diamonds', array_merge($baseFilters, ['color_id' => $color->id])) }}" class="{{ (string) $activeColorId === (string) $color->id ? 'is-active' : '' }}"><span>{{ $color->name }}</span></a></li>
+                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['color_id' => $color->id])) }}" class="{{ (string) $activeColorId === (string) $color->id ? 'is-active' : '' }}"><span>{{ $color->name }}</span></a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -63,9 +82,9 @@
                 </button>
                 <div id="diamondsFilterCut" class="collapse diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
-                        <li><a href="{{ route('diamonds', array_merge($baseFilters, ['cut_id' => null])) }}" class="{{ empty($activeCutId) ? 'is-active' : '' }}"><span>All Cuts</span></a></li>
+                        <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['cut_id' => null])) }}" class="{{ empty($activeCutId) ? 'is-active' : '' }}"><span>All Cuts</span></a></li>
                         @foreach ($cuts as $cut)
-                            <li><a href="{{ route('diamonds', array_merge($baseFilters, ['cut_id' => $cut->id])) }}" class="{{ (string) $activeCutId === (string) $cut->id ? 'is-active' : '' }}"><span>{{ $cut->name }}</span></a></li>
+                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['cut_id' => $cut->id])) }}" class="{{ (string) $activeCutId === (string) $cut->id ? 'is-active' : '' }}"><span>{{ $cut->name }}</span></a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -78,9 +97,9 @@
                 </button>
                 <div id="diamondsFilterClarity" class="collapse diamonds-filter-collapse" data-bs-parent="#diamondsFilterAccordion">
                     <ul class="diamonds-sidebar-list diamonds-sidebar-list--simple">
-                        <li><a href="{{ route('diamonds', array_merge($baseFilters, ['clarity_id' => null])) }}" class="{{ empty($activeClarityId) ? 'is-active' : '' }}"><span>All Clarity</span></a></li>
+                        <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['clarity_id' => null])) }}" class="{{ empty($activeClarityId) ? 'is-active' : '' }}"><span>All Clarity</span></a></li>
                         @foreach ($clarities as $clarity)
-                            <li><a href="{{ route('diamonds', array_merge($baseFilters, ['clarity_id' => $clarity->id])) }}" class="{{ (string) $activeClarityId === (string) $clarity->id ? 'is-active' : '' }}"><span>{{ $clarity->name }}</span></a></li>
+                            <li><a href="{{ route($filterRoute, array_merge($baseFilters, ['clarity_id' => $clarity->id])) }}" class="{{ (string) $activeClarityId === (string) $clarity->id ? 'is-active' : '' }}"><span>{{ $clarity->name }}</span></a></li>
                         @endforeach
                     </ul>
                 </div>

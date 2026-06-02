@@ -46,6 +46,18 @@ class PageSeeder extends Seeder
         );
 
         Page::updateOrCreate(
+            ['slug' => 'jewellery'],
+            [
+                'name' => 'Jewellery',
+                'meta_title' => 'Jewellery | Ratnavriksha',
+                'label' => 'Jewellery',
+                'heading' => "Discover Our\nFine Jewellery",
+                'description' => 'Browse our exclusive jewellery collection crafted with brilliance and timeless elegance.',
+                'status' => 'active',
+            ]
+        );
+
+        Page::updateOrCreate(
             ['slug' => 'blogs'],
             [
                 'name' => 'Blogs',

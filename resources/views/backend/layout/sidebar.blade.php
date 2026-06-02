@@ -110,7 +110,7 @@
             </div>
 
             @php
-                $productMenuOpen = request()->routeIs('shapes.*') || request()->routeIs('colors.*') || request()->routeIs('clarities.*') || request()->routeIs('cuts.*') || request()->routeIs('products.*') || request()->routeIs('products.import.*');
+                $productMenuOpen = request()->routeIs('shapes.*') || request()->routeIs('colors.*') || request()->routeIs('clarities.*') || request()->routeIs('cuts.*') || request()->routeIs('categories.*') || request()->routeIs('products.*') || request()->routeIs('products.import.*');
             @endphp
 
             <div class="sidebar-dropdown">
@@ -140,6 +140,10 @@
                     <a href="{{ route('cuts.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('cuts.*') ? 'active' : '' }}">
                         <i class="bi bi-scissors fs-5"></i>
                         <span class="menu-text">Cuts</span>
+                    </a>
+                    <a href="{{ route('categories.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                        <i class="bi bi-tags fs-5"></i>
+                        <span class="menu-text">Categories</span>
                     </a>
                     <a href="{{ route('products.index') }}" class="nav-link submenu-link d-flex align-items-center gap-2 {{ request()->routeIs('products.index') || request()->routeIs('products.create') || request()->routeIs('products.edit') ? 'active' : '' }}">
                         <i class="bi bi-list-ul fs-5"></i>

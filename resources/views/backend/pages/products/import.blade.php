@@ -6,7 +6,7 @@
 @section('content')
     <div class="dash-card mb-4">
         <h2 class="dash-title mb-1">Import Products from CSV</h2>
-        <p class="dash-subtitle mb-0">Upload a CSV file to create or update products in bulk.</p>
+        <p class="dash-subtitle mb-0">Upload a CSV file to create or update products in bulk. Export from <a href="{{ route('products.index') }}" class="auth-link">Product List</a> to edit in Excel, then upload here.</p>
     </div>
 
     @if(session('success'))
@@ -75,7 +75,11 @@
                         <li class="mb-2">First row must be column headers (download template).</li>
                         <li class="mb-2"><strong>name</strong> or <strong>stone_id</strong> is required on each row.</li>
                         <li class="mb-2">If <strong>stone_id</strong> already exists, that product is updated.</li>
-                        <li class="mb-2"><strong>shape</strong>, <strong>color</strong>, <strong>clarity</strong>, and <strong>cut</strong> must match names in your admin lists (case-insensitive).</li>
+                        <li class="mb-2"><strong>shape</strong>, <strong>color</strong>, <strong>clarity</strong>, <strong>cut</strong>, and <strong>categories</strong> must match names in your admin lists (case-insensitive).</li>
+                        <li class="mb-2"><strong>categories</strong>: multiple names separated by <code>|</code> or <code>,</code> (e.g. <code>Engagement|Loose</code>). Leave empty to clear categories on update.</li>
+                        <li class="mb-2"><strong>Diamond:</strong> <code>diamond_carat_size</code>, <code>diamond_carat_weight</code> (optional text, e.g. <code>1.02</code>, <code>1.00 ct</code>).</li>
+                        <li class="mb-2"><strong>Gold:</strong> <code>gold_karat</code> (e.g. <code>22</code>), <code>gold_weight</code> (e.g. <code>4.5 g</code>), <code>gold_hallmarked</code> (<code>yes</code> / <code>no</code>).</li>
+                        <li class="mb-2">Use <strong>Export CSV</strong> on Product List for a file with all columns including diamond &amp; gold — edit in Excel, then upload here.</li>
                         <li class="mb-2"><strong>status</strong>: <code>active</code> or <code>inactive</code>.</li>
                         <li class="mb-2"><strong>featured_path</strong>: path under <code>storage/app/public</code> (e.g. <code>products/featured/file.jpg</code>). Set <strong>featured_type</strong> to <code>image</code> or <code>video</code>.</li>
                         <li class="mb-2"><strong>gallery</strong> (new products only): <code>image:path|video:path</code> separated by <code>|</code>.</li>
@@ -84,8 +88,8 @@
 
                     <h6 class="mb-2">CSV Columns</h6>
                     <p class="small text-muted mb-0">
-                        name, stone_id, slug, shape, color, clarity, cut, row_weight, polish_weight,
-                        length, width, table_percent, total_depth, ratio, remarks, short_description,
+                        name, stone_id, slug, shape, color, clarity, cut, categories, diamond_carat_size, diamond_carat_weight, row_weight, polish_weight,
+                        length, width, table_percent, total_depth, ratio, gold_karat, gold_weight, gold_hallmarked, remarks, short_description,
                         long_description, meta_title, meta_description, meta_keywords, status,
                         featured_type, featured_path, gallery
                     </p>

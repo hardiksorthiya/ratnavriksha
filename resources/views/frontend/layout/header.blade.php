@@ -12,9 +12,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->routeIs('diamonds') ? 'active' : '' }}" href="{{ route('diamonds') }}">Diamonds</a></li>
-                            <li class="nav-item">
-                                <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a>
-                            </li>
+                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('jewellery') ? 'active' : '' }}" href="{{ route('jewellery') }}">Jewellery</a></li>
+
+                            
                     </ul>
 
                     <a class="navbar-brand hp-brand" href="{{ route('home') }}">
@@ -22,9 +22,10 @@
                     </a>
 
                     <ul class="navbar-nav hp-menu-group">
-                        
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}" href="{{ route('about') }}">About Us</a>
+                        </li>
                         <li class="nav-item"><a class="nav-link {{ request()->routeIs('news-events.*') ? 'active' : '' }}" href="{{ route('news-events.index') }}">News & Events</a></li>
-                        <li class="nav-item"><a class="nav-link {{ request()->routeIs('blogs.*') ? 'active' : '' }}" href="{{ route('blogs.index') }}">Blogs</a></li>
                         <li class="nav-item">
                             <a href="{{ route('contact') }}" class="btn hp-contact-btn {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
                         </li>

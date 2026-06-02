@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
+    protected $casts = [
+        'gold_hallmarked' => 'boolean',
+    ];
+
     protected $fillable = [
         'name',
         'slug',
@@ -18,6 +23,8 @@ class Product extends Model
         'color_id',
         'clarity_id',
         'cut_id',
+        'diamond_carat_size',
+        'diamond_carat_weight',
         'row_weight',
         'polish_weight',
         'length',
@@ -25,6 +32,9 @@ class Product extends Model
         'table_percent',
         'total_depth',
         'ratio',
+        'gold_karat',
+        'gold_weight',
+        'gold_hallmarked',
         'remarks',
         'short_description',
         'long_description',
@@ -57,5 +67,10 @@ class Product extends Model
     public function media(): HasMany
     {
         return $this->hasMany(ProductMedia::class)->orderBy('sort_order');
+    }
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
     }
 }

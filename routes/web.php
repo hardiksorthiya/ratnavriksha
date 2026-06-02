@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ClarityController;
 use App\Http\Controllers\Admin\CutController;
 use App\Http\Controllers\Admin\ColorController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\EnquiryController;
 use App\Http\Controllers\Frontend\DiamondController;
+use App\Http\Controllers\Frontend\JewelleryController;
 use App\Http\Controllers\Frontend\NewsController;
 use App\Http\Controllers\Frontend\PageController as FrontendPageController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
@@ -33,11 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('sliders', SliderController::class);
     Route::resource('shapes', ShapeController::class);
     Route::resource('colors', ColorController::class);
+    Route::resource('categories', CategoryController::class)->except(['destroy']);
     Route::resource('clarities', ClarityController::class);
     Route::resource('cuts', CutController::class);
     Route::resource('products', ProductController::class);
     Route::get('products-import', [ProductImportController::class, 'index'])->name('products.import.index');
     Route::get('products-import/template', [ProductImportController::class, 'downloadTemplate'])->name('products.import.template');
+    Route::get('products-export', [ProductImportController::class, 'export'])->name('products.export');
     Route::post('products-import', [ProductImportController::class, 'import'])->name('products.import.store');
     Route::resource('post-categories', PostCategoryController::class);
     Route::resource('posts', PostController::class);
@@ -62,6 +66,7 @@ Route::post('/contact', [EnquiryController::class, 'storeContact'])->name('conta
 Route::get('/about', fn () => app(FrontendPageController::class)->show('about'))->name('about');
 Route::get('/contact', fn () => app(FrontendPageController::class)->show('contact'))->name('contact');
 Route::get('/diamonds', [DiamondController::class, 'index'])->name('diamonds');
+Route::get('/jewellery', [JewelleryController::class, 'index'])->name('jewellery');
 Route::get('/blogs', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('/blogs/{slug}', [BlogController::class, 'show'])->name('blogs.show');
 Route::post('/blogs/{slug}/comments', [BlogController::class, 'storeComment'])->name('blogs.comments.store');

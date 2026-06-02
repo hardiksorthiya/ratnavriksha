@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 
-@section('title', 'Diamonds | ' . config('app.name'))
+@section('title', ($page->meta_title ?? ucfirst($catalogLabel)) . ' | ' . config('app.name'))
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/frontend/diamonds.css') }}">
@@ -12,35 +12,43 @@
     <section class="diamonds-listing py-5">
         <div class="container">
             <div class="row g-4">
-                <div class="col-lg-4">
-                    @include('frontend.component.diamonds.sidebar', [
-                        'shapes' => $shapes,
-                        'colors' => $colors,
-                        'cuts' => $cuts,
-                        'clarities' => $clarities,
-                        'activeShapeId' => $activeShapeId,
-                        'activeColorId' => $activeColorId,
-                        'activeCutId' => $activeCutId,
-                        'activeClarityId' => $activeClarityId,
-                    ])
-                </div>
+                @unless($hideSidebar ?? false)
+                    <div class="col-lg-4">
+                        @include('frontend.component.diamonds.sidebar', [
+                            'shapes' => $shapes,
+                            'colors' => $colors,
+                            'cuts' => $cuts,
+                            'clarities' => $clarities,
+                            'categories' => $categories,
+                            'activeShapeId' => $activeShapeId,
+                            'activeColorId' => $activeColorId,
+                            'activeCutId' => $activeCutId,
+                            'activeClarityId' => $activeClarityId,
+                            'activeCategoryId' => $activeCategoryId,
+                            'filterRoute' => $filterRoute ?? 'diamonds',
+                            'hideCategoryFilter' => $hideCategoryFilter ?? false,
+                        ])
+                    </div>
+                @endunless
 
-                <div class="col-lg-8">
+                <div class="{{ ($hideSidebar ?? false) ? 'col-12' : 'col-lg-8' }}">
                     <div class="diamonds-toolbar">
                         <h2 class="diamonds-title font-pilo">
-                            {!!
-                                $activeShapeId
-                                    ? ($shapes->firstWhere('id', $activeShapeId)->name ?? 'Diamonds')
-                                    : 'All Diamonds'
-                            !!}
+                            @if(!empty($activeCategoryId))
+                                {{ $categories->firstWhere('id', $activeCategoryId)->name ?? $defaultListTitle }}
+                            @elseif(!empty($activeShapeId))
+                                {{ $shapes->firstWhere('id', $activeShapeId)->name ?? $defaultListTitle }}
+                            @else
+                                {{ $defaultListTitle }}
+                            @endif
                         </h2>
                         <p class="diamonds-subtitle">
-                            {{ $products->total() }} diamonds found
+                            {{ $products->total() }} {{ $catalogLabel }} found
                         </p>
                     </div>
 
                     <div class="diamonds-grid">
-                        @foreach ($products as $product)
+                        @forelse ($products as $product)
                             <div class="diamonds-card-wrap">
                                 <article class="diamonds-card">
                                     <a class="diamonds-card-media" href="{{ route('product.show', $product->slug) }}" aria-label="{{ $product->name }}">
@@ -73,12 +81,14 @@
                                         <p class="diamonds-card-stone-id">
                                             {{ $product->stone_id ? 'ID: '.$product->stone_id : 'ID: —' }}
                                         </p>
-
-                                       
                                     </div>
                                 </article>
                             </div>
-                        @endforeach
+                        @empty
+                            <div class="diamonds-empty col-12">
+                                <p>No {{ $catalogLabel }} available right now.</p>
+                            </div>
+                        @endforelse
                     </div>
 
                     @if ($products->hasPages())
@@ -91,4 +101,3 @@
         </div>
     </section>
 @endsection
-
