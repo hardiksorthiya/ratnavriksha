@@ -39,6 +39,19 @@ body {
     font-family: 'Philosopher', Georgia, serif;
 }
 
+.sidebar-brand-link {
+    min-height: 44px;
+}
+
+.sidebar-brand-logo {
+    width: auto;
+    max-width: 120px;
+    max-height: 40px;
+    height: auto;
+    display: block;
+    flex-shrink: 0;
+}
+
 .sidebar-brand-icon {
     color: var(--gold);
 }
@@ -56,9 +69,9 @@ body {
 }
 
 .sidebar .nav-pills .nav-link.active {
-    background: rgba(201, 162, 39, 0.15) !important;
+    background: rgba(149, 85, 73, 0.18) !important;
     color: var(--gold-light) !important;
-    border: 1px solid rgba(201, 162, 39, 0.35);
+    border: 1px solid rgba(149, 85, 73, 0.45);
 }
 
 .sidebar .nav-link:focus,
@@ -89,7 +102,7 @@ body {
 }
 
 .sidebar-dropdown-toggle.active {
-    background: rgba(201, 162, 39, 0.15);
+    background: rgba(149, 85, 73, 0.18);
     color: var(--gold-light);
 }
 
@@ -144,6 +157,11 @@ body.sidebar-collapsed .sidebar .menu-text {
     width: 0;
     overflow: hidden;
     display: inline-block;
+}
+
+body.sidebar-collapsed .sidebar-brand-logo {
+    max-width: 36px;
+    max-height: 36px;
 }
 
 .topbar {

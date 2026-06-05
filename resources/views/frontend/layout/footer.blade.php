@@ -46,21 +46,15 @@
             <div class="col-md-6 col-12">
                 <ul class="footer-social-links">
                     <li>
-                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.facebook.com/diamonds.ratnavriksha/" target="_blank" rel="noopener noreferrer"
                             aria-label="Facebook">
                             <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"
+                        <a href="https://www.instagram.com/diamonds.ratnavriksha/" target="_blank" rel="noopener noreferrer"
                             aria-label="Instagram">
                             <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer"
-                            aria-label="X (Twitter)">
-                            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                         </a>
                     </li>
                 </ul>

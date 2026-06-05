@@ -1551,8 +1551,12 @@ h2.service-title.font-pilo {
     transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
 }
 
-.about-commitment-card-icon i {
-    font-weight: 300;
+.about-commitment-card-icon .fa-solid {
+    font-weight: 900;
+}
+
+.about-commitment-card-icon .fa-regular {
+    font-weight: 400;
 }
 
 .about-commitment-card:hover .about-commitment-card-icon {

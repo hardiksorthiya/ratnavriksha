@@ -1,8 +1,8 @@
 <aside id="appSidebar" class="sidebar">
     <div class="p-3 border-bottom">
-        <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex align-items-center gap-2">
-            <i class="bi bi-gem fs-4 sidebar-brand-icon"></i>
-            <span class="brand-text fw-semibold">{{ config('app.name', 'Ratnavriksha') }}</span>
+        <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex align-items-center gap-2 sidebar-brand-link">
+            <img src="{{ asset('images/logo_white.png') }}" alt="Ratnavriksha" class="sidebar-brand-logo">
+            {{-- <span class="brand-text fw-semibold">{{ config('app.name', 'Ratnavriksha') }}</span> --}}
         </a>
     </div>
 

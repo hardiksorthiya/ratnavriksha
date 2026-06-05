@@ -1,25 +1,22 @@
 @php
     $founders = [
         [
-            'name' => 'Amit Shah',
+            'name' => 'Pratik Singhal',
             'role' => 'Co-Founder & CEO',
-            'bio' => 'With decades in the diamond trade, Amit leads our vision for ethical sourcing and lasting client relationships.',
-            'initials' => 'AS',
-            'image' => 'images/about/founders/founder-1.jpg',
+            'bio' => 'With decades in the diamond trade, Pratik leads our vision for ethical sourcing and lasting client relationships.',
+            'image' => 'images/about/founder.png',
         ],
         [
-            'name' => 'Priya Mehta',
+            'name' => 'Rajat Bansal',
             'role' => 'Co-Founder & Creative Director',
-            'bio' => 'Priya shapes how every stone is presented — ensuring brilliance, storytelling, and design excellence at every touchpoint.',
-            'initials' => 'PM',
-            'image' => 'images/about/founders/founder-2.jpg',
+            'bio' => 'Rajat shapes how every stone is presented — ensuring brilliance, storytelling, and design excellence at every touchpoint.',
+            'image' => 'images/about/rajat.png',
         ],
         [
-            'name' => 'Vikram Patel',
+            'name' => 'Aditya Agrawal',
             'role' => 'Co-Founder & Operations',
-            'bio' => 'Vikram oversees quality, certification, and delivery — so every diamond reaches you with confidence and care.',
-            'initials' => 'VP',
-            'image' => 'images/about/founders/founder-3.jpg',
+            'bio' => 'Aditya oversees quality, certification, and delivery — so every diamond reaches you with confidence and care.',
+            'image' => 'images/about/aditya.png',
         ],
     ];
 @endphp
@@ -49,18 +46,14 @@
                 <div class="col-md-6 col-lg-4">
                     <article class="about-founder-card h-100">
                         <div class="about-founder-photo-wrap">
-                            @if ($hasImage)
+                           
                                 <img
                                     src="{{ asset($founder['image']) }}"
                                     alt="{{ $founder['name'] }}"
                                     class="about-founder-photo"
                                     loading="lazy"
                                 >
-                            @else
-                                <div class="about-founder-photo about-founder-photo--placeholder" aria-hidden="true">
-                                    <span>{{ $founder['initials'] }}</span>
-                                </div>
-                            @endif
+                         
                         </div>
                         <div class="about-founder-body">
                             <h3 class="about-founder-name font-pilo">{{ $founder['name'] }}</h3>

@@ -49,8 +49,4 @@
 
         <button type="submit" class="btn btn-auth">Login</button>
     </form>
-
-    <p class="auth-footer">
-        Don't have an account? <a href="{{ route('register') }}" class="auth-link">Register</a>
-    </p>
 @endsection

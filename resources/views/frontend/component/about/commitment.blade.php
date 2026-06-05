@@ -6,12 +6,12 @@
             'text' => 'Every diamond is 100% natural and comes with an authentic certificate.',
         ],
         [
-            'icon' => 'fa-regular fa-magnifying-glass',
+            'icon' => 'fa-solid fa-magnifying-glass',
             'title' => 'Transparency',
             'text' => 'We believe in complete transparency in pricing, quality, and origin.',
         ],
         [
-            'icon' => 'fa-solid fa-hands-holding',
+            'icon' => 'fa-solid fa-hand-holding-heart',
             'title' => 'Ethical Sourcing',
             'text' => 'Our diamonds are ethically sourced, ensuring respect for people and the planet.',
         ],
