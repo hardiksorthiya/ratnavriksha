@@ -3,17 +3,17 @@
         <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="about-center-image position-relative d-flex pt-2">
-                    <img src="{{ asset('images/home/03.jpeg') }}" alt="Why Ratnavriksha Gems" class="img-fluid img-about-home">
+                    <img src="{{ asset('images/home/03.jpeg') }}" alt="Why Ratnavriksha Diamonds" class="img-fluid img-about-home">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="about-left-section position-relative">
-                    <h2 class="about-title">Why Ratnavriksha Gems?</h2>
+                    <h2 class="about-title">Why Ratnavriksha Diamonds?</h2>
                     <div class="why-section-copy d-flex flex-column gap-3 pt-3">
-                        <p>Choosing a diamond partner is about more than sourcing exceptional stones—it’s about finding a company you can trust at every step. At Ratnavriksha Gems, we combine industry expertise, ethical practices, and uncompromising quality standards to deliver diamonds that inspire confidence and create lasting value.</p>
+                        <p>Choosing a diamond partner is about more than sourcing exceptional stones—it’s about finding a company you can trust at every step. At Ratnavriksha Diamonds, we combine industry expertise, ethical practices, and uncompromising quality standards to deliver diamonds that inspire confidence and create lasting value.</p>
                         <p>Our commitment begins with carefully selecting every diamond through rigorous quality evaluation and continues through transparent business practices that prioritize our clients’ success. Whether serving jewelry manufacturers, retailers, wholesalers, or global buyers, we provide personalized solutions tailored to unique requirements and market demands.</p>
                         <p>Backed by a strong international network and a passion for excellence, we ensure consistent quality, competitive value, and reliable service across every transaction. We believe that lasting relationships are built on trust, integrity, and performance—principles that guide everything we do.</p>
-                        <p>With Ratnavriksha Gems, you gain more than a supplier; you gain a trusted partner dedicated to helping your business shine brighter.</p>
+                        <p>With Ratnavriksha Diamonds, you gain more than a supplier; you gain a trusted partner dedicated to helping your business shine brighter.</p>
                     </div>
                     <a href="{{ route('about') }}" class="btn btn-primary-sorath mt-4">
                         Discover Our Difference

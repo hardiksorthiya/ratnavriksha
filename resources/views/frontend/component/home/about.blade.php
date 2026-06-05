@@ -4,7 +4,7 @@
             <div class="col-lg-5">
                 <div class="about-right-section position-relative">
                     <div class="about-description d-flex flex-column gap-3">
-                        <p class="pt-3">At Ratnavriksha Gems, every diamond represents a commitment to excellence,
+                        <p class="pt-3">At Ratnavriksha Diamonds, every diamond represents a commitment to excellence,
                             authenticity, and enduring value. Built on a foundation of trust and expertise, we
                             specialize in sourcing and delivering premium natural diamonds that meet the
                             highest standards of quality and craftsmanship.
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-lg-3">
                     <div class="about-left-section position-relative">
-                        <h2 class="about-title">About Ratnavriksha Gems</h2>
+                        <h2 class="about-title">About Ratnavriksha Diamonds</h2>
                         <a href="{{ route('about') }}" class="btn btn-primary-sorath mt-4">
                             Read More
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2.75 4.02">
